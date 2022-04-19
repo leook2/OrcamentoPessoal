@@ -1,3 +1,6 @@
+
+/*=========estou comentando o banco de dados pois a gente não tem um DEFINIDO por enquanto, e tbm para não dar conflito com o node na hora de iniciar=========
+
 const Sequelize = require('sequelize');
 const connection = require('../controllers/database');
 const Tipos = require('./Tipos')();
@@ -40,3 +43,4 @@ module.exports = function(app){
     //Tipos.sync({force:true})
     return Tipos
 }
+*/
