@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('./partials/head.ejs')%>
+    <link rel="stylesheet" href="../css/relatorio.css">
+    <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
+    <title>Relatório</title>
+</head>
+<body>
+
+    <%- include('./partials/header.ejs')%>
+
+    <main>
+        <!--==============Modal====================-->
+        <section class=" section-modal__intro">
+            <nav class="container">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">
+                    Filtrar
+                </button>
+                <button><a href="/home">Voltar para a Home</a><i class="fa fa-solid fa-house"></i></button>
+            </nav>
+
+            <!--==============Corpo do Modal====================-->
+            <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-title">O que deseja?</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="" class="form-label">Tipo</label>
+                                        <select name="" class="w-100 form-select" id="" data-live-search="true">
+                                            <option value="">Receita</option>
+                                            <option value="">Despesa</option>
+                                            <option value="">Investimento</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="" class="form-label">Nome</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label for="" class="form-label">Data</label>
+                                        <input type="month" class="form-month form-control">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="" class="form-label">Periodo</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">Filtrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--==============Saida====================-->
+        <section class="relatorio-saida container">
+            <div class="relatorio-saida-card relatorio__receita">
+                <div class="relatorio-saida-receita-resultado">
+                    <div class="saida saida__receita">2000 <span><i class="fa fa-solid fa-angle-up"></i></span></div>
+                </div>
+                <h2 class="relatorio-h2 relatorio-h2__receita">Receita</h2>
+            </div>
+            <div class="relatorio-saida-card relatorio__despesa">
+                <div class="relatorio-saida-despesa-resultado">
+                    <div class="saida saida__despesa">1000 <span><i class="fa fa-solid fa-angle-down"></i></span></div>
+                </div>
+                <h2 class="relatorio-h2 relatorio-h2__despesa">Despesa</h2>
+            </div>
+            <div class="relatorio-saida-card relatorio__investimento">
+                <div class="relatorio-saida-investimento-resultado">
+                    <div class="saida saida__investimento">500 <span><i class="fa fa-solid fa-angle-right"></i></span></div>
+                </div>
+                <h2 class="relatorio-h2 relatorio-h2__investimento">Investimento</h2>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <table class="table align-baseline table-striped table-hover table-sm text-center">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Nome</th>
+                            <th>Mês</th>
+                            <th>Ano</th>
+                            <th>
+                            <span>Ordenar |</span>
+                                <button class="btn btn-primary mx-1"><i class="fa fa-solid fa-arrow-trend-up"></i></button>
+                                <button class="btn btn-danger mx-1"><i class="fa fa-solid fa-arrow-trend-down"></i></button>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <%- include('./partials/footer.ejs')%>
+
+</body>
+</html>

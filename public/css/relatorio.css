@@ -1,0 +1,34 @@
+body{
+    background-color: rgb(222, 221, 236);
+}
+.section-modal__intro{
+    background-color: rgb(222, 221, 236);
+}
+.relatorio-saida{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px rgb(100 106 101 / 15%) solid;
+    box-shadow: 6px 3px 3px #8b858514;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+}
+.relatorio-saida-card{
+    width: 12rem;
+    color: rgb(0, 0, 0);
+}
+.relatorio-saida-card:not(:first-child){
+    margin-left: 3rem;
+}
+.saida{
+    font-size: 1.5rem;
+}
+.saida__receita{
+    color: rgb(9, 161, 9);
+}
+.saida__despesa{
+    color: rgb(202, 10, 10);
+}
+.saida__investimento{
+    color: rgb(22, 22, 204);
+}
