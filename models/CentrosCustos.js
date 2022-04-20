@@ -1,6 +1,3 @@
-
-/*=========estou comentando o banco de dados pois a gente não tem um DEFINIDO por enquanto, e tbm para não dar conflito com o node na hora de iniciar=========
-
 const Sequelize = require('sequelize');
 const connection = require('../controllers/database');
 const Tipos = require('./Tipos')();
@@ -22,6 +19,7 @@ module.exports = function(app){
     },{
         timestamps: false
     })
+    
     CentrosCustos.belongsTo(Tipos,{
         constraint: true,
         foreignKey:'idTipo',
@@ -30,17 +28,9 @@ module.exports = function(app){
     Tipos.hasMany(CentrosCustos,{
         foreignKey:'idTipo'
     });
-   //CentrosCustos.sync({force: true});
+    
+    
+    CentrosCustos.sync({force: false});
     return CentrosCustos
 
-    //Relacionamentos
-    // hasOne (tem um) 1 para 1
-    // belongsTo (pertence a..) N para 1
-    // hasMany ( tem muitos) 1 para N
-    // belongsToMany (pertence a muitos) N para N
-
-
-    //Tipos.sync({force:true})
-    return Tipos
 }
-*/

@@ -4,6 +4,12 @@ body{
 .section-modal__intro{
     background-color: rgb(222, 221, 236);
 }
+.section-modal__btn-home{
+    margin-left: 2rem;
+    border: none;
+    background-color: rgb(222, 221, 236);
+    color: black;
+}
 .relatorio-saida{
     display: flex;
     justify-content: flex-start;
