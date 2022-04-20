@@ -71,6 +71,7 @@ main {
     font-weight: bold;
     transition: .3s;
 }
-.btn1:hover{
+
+.btn1:hover {
     background-color: black;
 }
