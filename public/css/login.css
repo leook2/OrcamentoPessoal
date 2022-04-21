@@ -11,11 +11,25 @@
     --cor2: rgba(78, 207, 106, 0.548);
     --cor3: rgba(140, 99, 207, 0.656);
 }
+body{
+    background: linear-gradient(var(--cor3), var(--cor2));
+    overflow: hidden;
+}
+
+#voltar{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    position: relative;
+    font-size: 20px;
+    top: 80px;
+    justify-content: center;
+}
 
 main {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(var(--cor3), var(--cor2));
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -44,13 +58,9 @@ main {
     box-shadow: 4px 4px 12px;
 }
 
-#email {
-    margin-top: 50px;
-}
-
 .input {
     height: 50px;
-    width: 70%;
+    width: 100%;
     border: none;
     outline: none;
     border-radius: 60px;
