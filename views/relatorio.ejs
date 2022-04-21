@@ -14,10 +14,10 @@
         <!--==============Modal====================-->
         <section class=" section-modal__intro">
             <nav class="container">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">
+                <button class="btn btn-primary section-modal__filtrar" data-bs-toggle="modal" data-bs-target="#reg-modal">
                     Filtrar
                 </button>
-                <button><a href="/home">Voltar para a Home</a><i class="fa fa-solid fa-house"></i></button>
+                <button class="section-modal__btn-home"><a href="/home">Voltar para a Home</a><i class="fa fa-solid fa-house"></i></button>
             </nav>
 
             <!--==============Corpo do Modal====================-->
@@ -91,17 +91,17 @@
                         <tr>
                             <th>Tipo</th>
                             <th>Nome</th>
-                            <th>Mês</th>
-                            <th>Ano</th>
+                            <!--<th>Mês</th>-->
+                            <th>Valor</th>
                             <th>
                             <span>Ordenar |</span>
-                                <button class="btn btn-primary mx-1"><i class="fa fa-solid fa-arrow-trend-up"></i></button>
-                                <button class="btn btn-danger mx-1"><i class="fa fa-solid fa-arrow-trend-down"></i></button>
+                                <button class="btn btn-primary mx-1">Mais alto</button>
+                                <button class="btn btn-danger mx-1">Mais baixo</button>
                                 
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                 
                     </tbody>
                 </table>
