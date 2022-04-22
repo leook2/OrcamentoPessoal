@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const CentrosCustos = require('../../models/CentrosCustos')()
 const Transacoes = require('../../models/Transacoes')()
-const funcoes = require('../funcoes/funcoesRotas')(Sequelize)
+const query = require('../funcoes/funcoesRotas')
 
 module.exports = function(app){
     app.get('/relatorio', (req, res)=>{
@@ -10,7 +10,7 @@ module.exports = function(app){
     })
 
     app.get('/relatorio/dados', (req, res)=>{
-        funcoes.findAll(Sequelize, res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos)
+        query.findAll(res, 'relatorio', Transacoes, 'idTransacao', 'DESC', CentrosCustos)
         //findAll(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos)
     })
 

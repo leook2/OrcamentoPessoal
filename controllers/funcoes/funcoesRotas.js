@@ -1,15 +1,16 @@
-const Sequelize = require('sequelize');
 
-function findAll(Sequelize, res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
-    consulta = {}
+function findAll(res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
+    let consulta = []
     if (includeTable) {
         let include = { include: [{ model: includeTable }] }
         consulta.push(include)
     }
     query = { raw: true, order: [[orderCampo, ordem]] }
     consulta.push(query)
-    table.findAll(consulta)
+    console.log(...consulta)
+    table.findAll(...consulta)
         .then(resp => {
+            console.log(resp)
             res.render(rota, { dados: resp })
         })
         .catch(erro => {
@@ -17,7 +18,7 @@ function findAll(Sequelize, res, rota, table, orderCampo, ordem = 'DESC', includ
             console.log(erro)
         })
 }
-module.exports = findAll
+exports.findAll = findAll
 
 
 function destroy(id, campoPk, rota, table, res) {
@@ -30,7 +31,7 @@ function destroy(id, campoPk, rota, table, res) {
             console.log(erro)
         })
 }
-module.exports = destroy
+exports.destroy = destroy
 
 /*
 app.post('/centroscustos/update', (req, res) => {
@@ -66,7 +67,7 @@ function buscar(id, res, table,) {
             res.json({ erro: 'Dados não encontrados' })
         })
 }
-module.exports = buscar
+exports.buscar = buscar
 
 
 function create(dados, rota, table, res) {
@@ -78,4 +79,4 @@ function create(dados, rota, table, res) {
             console.log(erro)
         })
 }
-module.exports = create
+exports.create = create 
