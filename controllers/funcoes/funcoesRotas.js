@@ -1,5 +1,6 @@
+const Sequelize = require('sequelize');
 
-function findAll(res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
+function findAll(Sequelize, res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
     consulta = {}
     if (includeTable) {
         let include = { include: [{ model: includeTable }] }
@@ -20,7 +21,7 @@ module.exports = findAll
 
 
 function destroy(id, campoPk, rota, table, res) {
-    table.destroy({ where: { campoPk: id } })
+    table.destroy({ where: { campoPk : id } })
         .then(() => {
             res.render(rota)
         })
@@ -31,6 +32,7 @@ function destroy(id, campoPk, rota, table, res) {
 }
 module.exports = destroy
 
+/*
 app.post('/centroscustos/update', (req, res) => {
     console.log(req.body)
     let id = parseInt(req.body.id)
@@ -48,6 +50,7 @@ app.post('/centroscustos/update', (req, res) => {
             console.log(erro)
         })
 })
+*/
 
 function update(id, campoPk, dados, rota, table, res) {
     table.update(dados, { where: { campoPk: id } })
@@ -64,9 +67,6 @@ function buscar(id, res, table,) {
         })
 }
 module.exports = buscar
-
-
-
 
 
 function create(dados, rota, table, res) {

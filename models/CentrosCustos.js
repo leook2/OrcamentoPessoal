@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize');
-const connection = require('../controllers/database');
-const Tipos = require('./Tipos')();
+const Sequelize     = require('sequelize');
+const connection    = require('../controllers/database');
+const Tipos         = require('./Tipos')();
 //const tipos = require("./Tipos")();
 module.exports = function(app){
     const CentrosCustos = connection.define("centros_custos",{
@@ -30,7 +30,7 @@ module.exports = function(app){
     });
     
     
-    CentrosCustos.sync({force: false});
+    //CentrosCustos.sync({force: true});
     return CentrosCustos
 
 }

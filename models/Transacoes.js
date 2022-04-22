@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const connection = require('../controllers/database')
+const Sequelize     = require('sequelize')
+const connection    = require('../controllers/database')
 const CentrosCustos = require('./CentrosCustos')()
 
 module.exports = function(app){
@@ -35,6 +35,6 @@ module.exports = function(app){
     });
     
 
-    Transacoes.sync({force: true});
+    //Transacoes.sync({force: true});
     return Transacoes
 }
