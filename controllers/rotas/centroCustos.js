@@ -5,7 +5,7 @@ const CentrosCustos = require("../../models/CentrosCustos")()
 module.exports = function(app){
     app.get('/centroscustos', (req, res)=>{
         CentrosCustos.findAll({include:[{model:Tipos}]}, 
-            {raw:true,order:[['idCentroCusto', 'DESC']]})// ASC=Ordenaçao Crescente e DESC= Ordenacao decrescente
+            {raw:true,order:[['idCentroCusto', 'DESC']]})
             .then(resp =>{
                 res.render("centrosCustos", {cCustos:resp});
             })
