@@ -1,8 +1,9 @@
-const Sequelize = require('sequelize');
+const Sequelize     = require('sequelize');
 
 const CentrosCustos = require('../../models/CentrosCustos')()
-const Transacoes = require('../../models/Transacoes')()
-const query = require('../funcoes/funcoesRotas')
+const idTipo        = require('../../models/Tipos')()
+const Transacoes    = require('../../models/Transacoes')()
+const query         = require('../funcoes/funcoesRotas')
 
 module.exports = function(app){
     app.get('/relatorio', (req, res)=>{
@@ -15,3 +16,5 @@ module.exports = function(app){
     })
 
 }
+
+/*<!--     --> */

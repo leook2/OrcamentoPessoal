@@ -83,6 +83,12 @@
                 </div>
                 <h2 class="relatorio-h2 relatorio-h2__investimento">Investimento</h2>
             </div>
+            <div class="relatorio-saida-card relatorio__total">
+                <div class="relatorio-saida-total-resultado">
+                    <div class="saida saida__total" >500</div>
+                </div>
+                <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
+            </div>
         </section>
         <section>
             <div class="container">
@@ -91,7 +97,7 @@
                         <tr>
                             <th>Tipo</th>
                             <th>Nome</th>
-                            <!--<th>Mês</th>-->
+                            <th>Descrição</th>
                             <th>Valor</th>
                             <th>
                             <span>Ordenar |</span>
@@ -101,7 +107,15 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody id="tbody">
+                    <tbody id="tbody"> 
+                        <% dados.forEach(element => { %>
+                            <tr>
+                                <td><%= element.idCentroCusto %> </td>
+                                <td><%= element.idCentroCusto %> </td>
+                                <td><%= element.descricaoTransacao %> </td>
+                                <td><%= element.valorTransacao %> </td>
+                            </tr>
+                        <% }) %>
                 
                     </tbody>
                 </table>
