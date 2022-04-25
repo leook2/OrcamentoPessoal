@@ -110,8 +110,8 @@
                     <tbody id="tbody"> 
                         <% dados.forEach(element => { %>
                             <tr>
-                                <td><%= element.idCentroCusto %> </td>
-                                <td><%= element.idCentroCusto %> </td>
+                                <td><%= element.centros_custo.dataValues.idTipo %> </td>
+                                <td><%= element.centros_custo.dataValues.nomeCentroCusto %> </td>
                                 <td><%= element.descricaoTransacao %> </td>
                                 <td><%= element.valorTransacao %> </td>
                             </tr>

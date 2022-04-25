@@ -2,7 +2,7 @@
 function findAll(res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
     let consulta = []
     if (includeTable) {
-        let include = { include: [{ model: includeTable }] }
+        let include = {include: [{ model: includeTable }] }
         consulta.push(include)
     }
     query = { raw: true, order: [[orderCampo, ordem]] }
