@@ -26,11 +26,11 @@ module.exports = function(app){
       })
 
     app.get("/relatorio/teste", (req, res) => {
-        Transacoes.sum('valorTransacao', {where: {idCentroCusto:1}})
+        /*Transacoes.sum('valorTransacao', {where: {idCentroCusto:1}})
           .then(resp => {
             console.log(resp)
-            //res.json(resp)
-          })
+            res.json(resp)
+          })*/
 
           Transacoes.findAll({
             attributes:['idCentroCusto',
@@ -39,7 +39,7 @@ module.exports = function(app){
           include:[{model:CentrosCustos, attributes:{exclude:['idCentroCusto', 'idTipo']},
                   include:[{model:Tipos}]}],
           group:'idCentroCusto',
-          roaw:true
+          //raw:true
           })
           .then(cCusto=>{
             Transacoes.findAll({
@@ -49,9 +49,10 @@ module.exports = function(app){
             include:[{model:CentrosCustos, attributes:{exclude:['idCentroCusto', 'nomeCentroCusto', 'idTipo']},
                     include:[{model:Tipos}]}],
             group:'nomeTipo',
-
+            //raw:true
             })
             .then(tipos =>{
+              console.log({centrosCustos:cCusto, tipos:tipos})
               res.json({centrosCustos:cCusto, tipos:tipos})
             })
           })
