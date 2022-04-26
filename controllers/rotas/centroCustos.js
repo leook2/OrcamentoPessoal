@@ -1,5 +1,3 @@
-const req = require("express/lib/request");
-const query= require('../funcoes/funcoesRotas')
 const Tipos        = require('../../models/Tipos')()
 const CentrosCustos = require("../../models/CentrosCustos")()
 const query         = require('../funcoes/funcoesRotas')
