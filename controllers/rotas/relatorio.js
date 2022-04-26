@@ -1,8 +1,7 @@
 const { Op }        = require('sequelize');
 const Sequelize     = require('sequelize');
-
 const CentrosCustos = require('../../models/CentrosCustos')()
-const idTipo        = require('../../models/Tipos')()
+const Tipos        = require('../../models/Tipos')()
 const Transacoes    = require('../../models/Transacoes')()
 const query         = require('../funcoes/funcoesRotas')
 
@@ -27,18 +26,35 @@ module.exports = function(app){
       })
 
     app.get("/relatorio/teste", (req, res) => {
-        try {
-          const resultado = Transacoes.findAll({
-            attributes: ['valorTransacao', [Sequelize.fn('sum', Sequelize.col('ValorTrans')), 'total'],
-            [Sequelize.fn('avg', Sequelize.col('score')), 'average']],
-            group : ['user.oid'],
-            raw: true
-           });
-          console.log(...resultado)
-          res.send(resultado);
-        } catch (err) {
-          res.send(err);
-        }
+        Transacoes.sum('valorTransacao', {where: {idCentroCusto:1}})
+          .then(resp => {
+            console.log(resp)
+            //res.json(resp)
+          })
+
+          Transacoes.findAll({
+            attributes:['idCentroCusto',
+            [Sequelize.fn('sum', Sequelize.col('valorTransacao')), 'SomaValor']
+          ],
+          include:[{model:CentrosCustos, attributes:{exclude:['idCentroCusto', 'idTipo']},
+                  include:[{model:Tipos}]}],
+          group:'idCentroCusto',
+          roaw:true
+          })
+          .then(cCusto=>{
+            Transacoes.findAll({
+              attributes:['idCentroCusto',
+              [Sequelize.fn('sum', Sequelize.col('valorTransacao')), 'SomaValor']
+            ],
+            include:[{model:CentrosCustos, attributes:{exclude:['idCentroCusto', 'nomeCentroCusto', 'idTipo']},
+                    include:[{model:Tipos}]}],
+            group:'nomeTipo',
+
+            })
+            .then(tipos =>{
+              res.json({centrosCustos:cCusto, tipos:tipos})
+            })
+          })
       });
 
 }
