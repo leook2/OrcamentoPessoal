@@ -1,19 +1,17 @@
-<!--<head>
-    <%- include('./partials/head.ejs')%>
-        <link rel="stylesheet" href="../css/centroscustos.css">
-        <script src="https://kit.fontawesome.com/feed27c0da.js" crossorigin="anonymous"></script>
-        <title>Centro Custos</title>
-</head--> 
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <%- include('./partials/head.ejs')%>
-    <link rel="stylesheet" href="../css/centroscustos.css">
+    <!--<link rel="stylesheet" href="../css/centroscustos.css">-->
     <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
     <title>Centro Custos</title>
+    <script src="../js/centrosCustos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" ></script>
 </head>
+<body>
+    <%- include('./partials/header.ejs')%>
+    
+
     <main class="container">
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -26,7 +24,7 @@
                   
                     <div class="card">
                         <div class="card-body">
-                            <form id="form" action="http://localhost:8182/centroscustos">
+                            <form id="form">
                                <div class="row">
                                     <div class="col-1">
                                         <label for="idCentroCusto" class="form-label">Id</label>
@@ -80,8 +78,10 @@
                                     <td><%=cCusto.nomeCentroCusto%></td>
                                     <td>
                                         <div>
+                                            <% include('../public/js/relatorio.ejs') %>
                                             <button onclick=<%-'"editar('+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
-                                            <button onclick=<%-'"deletar('+cCusto.idCentroCusto+')"'%> class="btn btn-danger fa fa-times mx-1"></button>
+
+                                            <button onclick=<%-'"accDelete(`/centroscustos/deletar`, '+cCusto.idCentroCusto+')"'%>  class="btn btn-danger fa fa-times mx-1"></button>
                                         </div>
                                       </td>
                                 </tr>
@@ -91,16 +91,38 @@
                     </table>
                 </div>
           </div>
-          <%- include('./partials/footer.ejs')%>
+         
     </main>
-
+    <%- include('./partials/footer.ejs')%>
+</body>
+<!--
 <script>
+    const url ="http://localhost:8182/centroscustos" 
     var form = document.getElementById('form');
     var Modal = document.getElementById('modal')
     var modal = new bootstrap.Modal(Modal);
     function exibirModal(){modal.toggle()}
     Modal.addEventListener('shown.bs.modal', (e)=>form.nome.focus())
     Modal.addEventListener('hidden.bs.modal', (e)=>limparCampos())
-
+    function gravar(){
+        let dados={nome:form.nome.value, idtipo:form.idtipo.value}
+        actionPost(url,dados)
+     }
+     function actionPost(url,dados){
+        axios.post(url, dados)
+        .then(res =>{
+            if (res.status==200 && res.data.results.affectedRows>=1){
+                aler("Dados gravados com sucesso!")
+                window.locate.reload()
+            } else{
+                console.log(res.status)
+            }
+        })
+        .catch(erro=>{
+            alert("erro"+ erro)
+            console.log(erro)
+        });
+     }
    
   </script>
+-->

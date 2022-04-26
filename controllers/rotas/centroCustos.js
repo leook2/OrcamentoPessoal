@@ -1,8 +1,74 @@
 const req = require("express/lib/request");
-
-const Tipos = require("../../models/Tipos")();
+const query= require('../funcoes/funcoesRotas')
+const Tipos        = require('../../models/Tipos')()
 const CentrosCustos = require("../../models/CentrosCustos")()
+const query         = require('../funcoes/funcoesRotas')
+const Transacoes    = require('../../models/Transacoes')()
+
+
 module.exports = function(app){
+    app.get('/centroscustos', (req, res)=>{
+        CentrosCustos.findAll({include:[{model:Tipos}]}, 
+            {raw:true,order:[['idCentroCusto', 'DESC']]})
+            .then(resp =>{
+                res.render("centrosCustos", {cCustos:resp});
+            })
+            .catch(erro=>{
+                console.log('Catch Post')
+                console.log(erro)
+            })
+        
+    });
+    app.delete('/centroscustos',  (req, res)=>{
+        query.destroy(id, campoPk, rota, table, res)
+        //destroy(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
+    })
+
+    app.put('/centroscustos',  (req, res)=>{
+        query.update(id, campoPk, dados, rota, table, res)
+        //updadte(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
+    })
+
+    app.post('/centroscustos',  (req, res)=>{
+        let dados={idCentroCusto:req.body.idtipo,nomeCentroCusto:req.body.nome}
+        let rota="centrosCustos"        
+        query.create(dados, rota, CentrosCustos, res)
+        //create(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos)
+         
+    })
+        
+    
+    
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*{
     app.get('/centroscustos', (req, res)=>{
         CentrosCustos.findAll({include:[{model:Tipos}]}, 
             {raw:true,order:[['idCentroCusto', 'DESC']]})
@@ -51,15 +117,9 @@ module.exports = function(app){
         })
     })
 
-    app.delete('/centroscustos/deletar/:id', (req,res)=>{
+    app.delete('/centroscustos/deletar?id', (req,res)=>{
         let id= parseInt(req.params.id)
-        CentrosCustos.destroy({where:{idCentroCusto:id}})
-        .then((resp)=>{
-            res.render("CentrosCustos")
-        })
-        .catch((erro)=>{
-            console.log('Catch Delete')
-            console.log(erro)
-        })
+        console.log(id)
+        query.destroy(id, 'idTransacao', '/centroscustos', Transacoes, res)
     })
-}
+}*/
