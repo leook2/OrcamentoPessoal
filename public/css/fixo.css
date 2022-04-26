@@ -233,6 +233,7 @@ header{
 @media screen and (max-width: 840px){
     .nav-responsive{
         display: block;
+        z-index: 200;
     }
     #menuResponsive{
         display: none;
@@ -243,10 +244,9 @@ header{
         margin-top: 2rem;
     }
     .cabecalho-principal-nav-itens-a{
-        margin: 4rem;
-    }
-    .home{
-        margin-bottom: 3rem;
+        margin: 1rem;
+        padding: 1rem;
+        display: inline-block;
     }
     .cabecalho-principal-nav-itens-a a{
         margin-top: 3rem;
@@ -261,6 +261,18 @@ header{
         flex-direction:column;
         align-items: flex-start;
         margin-top: -2rem;
+        z-index: 100;
+    }
+    .cabecalho-principal-nav-btn{
+        margin: 1.1rem auto;
+        padding: .5rem;
+    }
+    .last::after{
+        margin-top: 1rem;
+        position: absolute;
+        border-bottom: 2.3px #fff solid;
+        width: 100%;
+        right: 0;
     }
 }
 @media screen and (max-width: 745px){

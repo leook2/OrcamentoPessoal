@@ -153,11 +153,9 @@ body{
     margin-top: 20em;
 }
 
-
 .section-explicativa{
     margin-top: 7em;
     display: flex;
-    width: 75em;
     text-align: start;
 }
 .section-explicativa-cards{
@@ -218,6 +216,16 @@ body{
     .section-cards-global{
         height: 46em;
     }
+    .section-intro-img{
+        width: 400px;
+    }
+    .section-intro-cont::after{
+        width: 13em;
+        height: 10em;
+        margin-left: 1em;
+        margin-bottom: -29em;
+        z-index: -1;
+        }
     .section-explicativa-cards-item:not(:first-child){
         margin-left: 0;
     }

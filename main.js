@@ -23,7 +23,6 @@ app.use(express.static('public'));
 app.use(bordyParser.urlencoded({ extended: true }));
 app.use(bordyParser.json());
 
-
 consign()
     .include('./models')
     .include('./controllers/rotas')

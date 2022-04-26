@@ -29,35 +29,35 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="">
+                            <form action="" id="form">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="" class="form-label">Tipo</label>
-                                        <select name="" class="w-100 form-select" id="" data-live-search="true">
+                                        <label for="tipo" class="form-label">Tipo</label>
+                                        <select name="tipo" class="w-100 form-select" id="" data-live-search="true">
                                             <option value="">Receita</option>
                                             <option value="">Despesa</option>
                                             <option value="">Investimento</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="" class="form-label">Nome</label>
-                                        <input type="text" class="form-control">
+                                        <label for="nome" class="form-label">Nome</label>
+                                        <input type="text" name="nome" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-7">
-                                        <label for="" class="form-label">Data</label>
-                                        <input type="month" class="form-month form-control">
+                                        <label for="data" class="form-label">Data</label>
+                                        <input type="month" name="data" class="form-month form-control">
                                     </div>
                                     <div class="col-md-5">
-                                        <label for="" class="form-label">Periodo</label>
-                                        <input type="text" class="form-control">
+                                        <label for="periodo" class="form-label">Periodo</label>
+                                        <input type="text" name="periodo" class="form-control">
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary">Filtrar</button>
+                            <button class="btn btn-primary" id="filtrar" >Filtrar</button>
                         </div>
                     </div>
                 </div>
@@ -67,25 +67,58 @@
         <section class="relatorio-saida container">
             <div class="relatorio-saida-card relatorio__receita">
                 <div class="relatorio-saida-receita-resultado">
-                    <div class="saida saida__receita">2000 <span><i class="fa fa-solid fa-angle-up"></i></span></div>
+                    <div class="saida saida__receita"><% include('../public/js/relatorio.ejs') %>
+                        <% var result = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo ==2) { %>
+                        <% result.push(element.valorTransacao) %> 
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(result) %>
+                     </h3></div>
                 </div>
                 <h2 class="relatorio-h2 relatorio-h2__receita">Receita</h2>
             </div>
             <div class="relatorio-saida-card relatorio__despesa">
                 <div class="relatorio-saida-despesa-resultado">
-                    <div class="saida saida__despesa">1000 <span><i class="fa fa-solid fa-angle-down"></i></span></div>
+                    <div class="saida saida__despesa"><% var result = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo ==1) { %>
+                        <% result.push(element.valorTransacao) %> 
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(result) %>
+                     </h3></div>
                 </div>
                 <h2 class="relatorio-h2 relatorio-h2__despesa">Despesa</h2>
             </div>
             <div class="relatorio-saida-card relatorio__investimento">
                 <div class="relatorio-saida-investimento-resultado">
-                    <div class="saida saida__investimento">500 <span><i class="fa fa-solid fa-angle-right"></i></span></div>
+                    <div class="saida saida__investimento"><% var result = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo ==3) { %>
+                        <% result.push(element.valorTransacao) %> 
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(result) %>
+                     </h3></div>
                 </div>
                 <h2 class="relatorio-h2 relatorio-h2__investimento">Investimento</h2>
             </div>
             <div class="relatorio-saida-card relatorio__total">
                 <div class="relatorio-saida-total-resultado">
-                    <div class="saida saida__total" >500</div>
+                    <div class="saida saida__total" ><% var result = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo) { %>
+                        <% result.push(element.valorTransacao) %> 
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(result) %>
+                     </h3></div>
                 </div>
                 <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
             </div>
@@ -101,7 +134,7 @@
                             <th>Valor</th>
                             <th>
                             <span>Ordenar |</span>
-                                <button class="btn btn-primary mx-1">Mais alto</button>
+                                <button class="btn btn-primary mx-1" >Mais alto</button>
                                 <button class="btn btn-danger mx-1">Mais baixo</button>
                                 
                             </th>
@@ -110,7 +143,14 @@
                     <tbody id="tbody"> 
                         <% dados.forEach(element => { %>
                             <tr>
-                                <td><%= element.centros_custo.dataValues.idTipo %> </td>
+                                <td> <% if (element.centros_custo.dataValues.idTipo ==2) { %>
+                                    Receita
+                                <% } else if (element.centros_custo.dataValues.idTipo ==3) { %>
+                                    Investimento
+                                <% }else if (element.centros_custo.dataValues.idTipo ==1) { %>
+                                    Despesa
+                                <% } %>
+                             </td>
                                 <td><%= element.centros_custo.dataValues.nomeCentroCusto %> </td>
                                 <td><%= element.descricaoTransacao %> </td>
                                 <td><%= element.valorTransacao %> </td>
@@ -124,6 +164,6 @@
     </main>
 
     <%- include('./partials/footer.ejs')%>
-
+    
 </body>
 </html>

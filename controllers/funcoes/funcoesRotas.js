@@ -80,3 +80,4 @@ function create(dados, rota, table, res) {
         })
 }
 exports.create = create 
+
