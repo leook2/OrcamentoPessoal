@@ -26,7 +26,7 @@
                   
                     <div class="card">
                         <div class="card-body">
-                            <form id="form" action="http://localhost:8182/centroscustos">
+                            <form id="form">
                                <div class="row">
                                     <div class="col-1">
                                         <label for="idCentroCusto" class="form-label">Id</label>
@@ -95,12 +95,31 @@
     </main>
 
 <script>
+    const url ="http://localhost:8182/centroscustos" 
     var form = document.getElementById('form');
     var Modal = document.getElementById('modal')
     var modal = new bootstrap.Modal(Modal);
     function exibirModal(){modal.toggle()}
     Modal.addEventListener('shown.bs.modal', (e)=>form.nome.focus())
     Modal.addEventListener('hidden.bs.modal', (e)=>limparCampos())
-
+    function gravar(){
+        let dados={nome:form.nome.value, idtipo:form.idtipo.value}
+        actionPost(url,dados)
+     }
+     function actionPost(url,dados){
+        axios.post(url, dados)
+        .then(res =>{
+            if (res.status==200 && res.data.results.affectedRows>=1){
+                aler("Dados gravados com sucesso!")
+                window.locate.reload()
+            } else{
+                console.log(res.status)
+            }
+        })
+        .catch(erro=>{
+            alert("erro"+ erro)
+            console.log(erro)
+        });
+     }
    
   </script>

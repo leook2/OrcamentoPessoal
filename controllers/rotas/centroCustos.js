@@ -1,8 +1,71 @@
 const req = require("express/lib/request");
-
-const Tipos = require("../../models/Tipos")();
+const query= require('../funcoes/funcoesRotas')
+const Tipos        = require('../../models/Tipos')()
 const CentrosCustos = require("../../models/CentrosCustos")()
+
 module.exports = function(app){
+    app.get('/centroscustos', (req, res)=>{
+        CentrosCustos.findAll({include:[{model:Tipos}]}, 
+            {raw:true,order:[['idCentroCusto', 'DESC']]})
+            .then(resp =>{
+                res.render("centrosCustos", {cCustos:resp});
+            })
+            .catch(erro=>{
+                console.log('Catch Post')
+                console.log(erro)
+            })
+        
+    });
+    app.delete('/centroscustos',  (req, res)=>{
+        query.destroy(id, campoPk, rota, table, res)
+        //destroy(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
+    })
+
+    app.put('/centroscustos',  (req, res)=>{
+        query.update(id, campoPk, dados, rota, table, res)
+        //updadte(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
+    })
+
+    app.post('/centroscustos',  (req, res)=>{
+        let dados={idCentroCusto:req.body.idtipo,nomeCentroCusto:req.body.nome}
+        let rota="centrosCustos"        
+        query.create(dados, rota, CentrosCustos, res)
+        //create(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos)
+         
+    })
+        
+    
+    
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*{
     app.get('/centroscustos', (req, res)=>{
         CentrosCustos.findAll({include:[{model:Tipos}]}, 
             {raw:true,order:[['idCentroCusto', 'DESC']]})
@@ -62,4 +125,4 @@ module.exports = function(app){
             console.log(erro)
         })
     })
-}
+}*/
