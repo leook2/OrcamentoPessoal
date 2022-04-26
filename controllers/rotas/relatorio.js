@@ -1,7 +1,7 @@
 const { Op }        = require('sequelize');
 const Sequelize     = require('sequelize');
 const CentrosCustos = require('../../models/CentrosCustos')()
-const Tipos        = require('../../models/Tipos')()
+const Tipos         = require('../../models/Tipos')()
 const Transacoes    = require('../../models/Transacoes')()
 const query         = require('../funcoes/funcoesRotas')
 
