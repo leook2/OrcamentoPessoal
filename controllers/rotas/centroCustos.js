@@ -2,6 +2,9 @@ const req = require("express/lib/request");
 const query= require('../funcoes/funcoesRotas')
 const Tipos        = require('../../models/Tipos')()
 const CentrosCustos = require("../../models/CentrosCustos")()
+const query         = require('../funcoes/funcoesRotas')
+const Transacoes    = require('../../models/Transacoes')()
+
 
 module.exports = function(app){
     app.get('/centroscustos', (req, res)=>{
@@ -114,15 +117,9 @@ module.exports = function(app){
         })
     })
 
-    app.delete('/centroscustos/deletar/:id', (req,res)=>{
+    app.delete('/centroscustos/deletar?id', (req,res)=>{
         let id= parseInt(req.params.id)
-        CentrosCustos.destroy({where:{idCentroCusto:id}})
-        .then((resp)=>{
-            res.render("CentrosCustos")
-        })
-        .catch((erro)=>{
-            console.log('Catch Delete')
-            console.log(erro)
-        })
+        console.log(id)
+        query.destroy(id, 'idTransacao', '/centroscustos', Transacoes, res)
     })
 }*/
