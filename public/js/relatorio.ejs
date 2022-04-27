@@ -1,27 +1,17 @@
 <%
-parseFloatt = function(vetor) {
-    let result = 0
-    for(let i=0; i<vetor.length; i++){
-        result = result + parseFloat(vetor[i])
+parseFloatt = function(vetorReceita, vetorDespesa = '') {
+    let vetor1 = 0
+    let vetor2 = 0
+
+    for(let i=0; i<vetorReceita.length; i++){
+        vetor1 =vetor1 + parseFloat(vetorReceita[i])
     }
+    for(let i=0; i<vetorDespesa.length; i++){
+        vetor2 = vetor2 + parseFloat(vetorDespesa[i])
+    }
+    const result = vetor1 - vetor2
     var dinheiro = result.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
     return dinheiro
 }
 
-%>
-<%
-accDelete = function(url, id){
-    console.log(url);
-    console.log(id)
-
-    axios.delete(`${url}?id=${id}`)
-    .then(resp=>{
-        console.log(resp)
-        actionGet(url)
-        alert('Registro excluido com sucesso!')
-    })
-    .catch(err=>{
-        console.log(`Error: ${err}`)
-    })
-}
 %>

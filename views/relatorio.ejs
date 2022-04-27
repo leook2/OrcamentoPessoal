@@ -110,14 +110,18 @@
             </div>
             <div class="relatorio-saida-card relatorio__total">
                 <div class="relatorio-saida-total-resultado">
-                    <div class="saida saida__total" ><% var result = [] %>
+                    <div class="saida saida__total" ><% var receita = [] %>
+                        <% var saida = [] %>
                         <% dados.forEach(element => { %>
-                      <% if (element.centros_custo.dataValues.idTipo) { %>
-                        <% result.push(element.valorTransacao) %> 
+                      <% if (element.centros_custo.dataValues.idTipo ===2) { %>
+                        <% receita.push(element.valorTransacao) %> 
+                      <% } %>
+                      <% if (element.centros_custo.dataValues.idTipo ===1) { %>
+                        <% saida.push(element.valorTransacao) %> 
                       <% } %>
                     <% }) %>
                     <h3>
-                        <%= parseFloatt(result) %>
+                        <%= parseFloatt(receita, saida) %>
                      </h3></div>
                 </div>
                 <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
