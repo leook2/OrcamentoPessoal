@@ -7,34 +7,26 @@ const Transacoes    = require('../../models/Transacoes')()
 module.exports = function(app){
     
     app.post('/centroscustos',  (req, res)=>{
-        let dados={idCentroCusto:req.body.idtipo,nomeCentroCusto:req.body.nome}
-        let rota="/centroscustos";
-        console.log(dados)        
-        query.create(dados, rota, CentrosCustos, res)
-        //create(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos)
+        let dados={idTipo:req.body.idtipo,nomeCentroCusto:req.body.nome}
+        query.create(dados, CentrosCustos, res)
          
     })
     app.get('/centroscustos', (req, res)=>{
-        CentrosCustos.findAll({include:[{model:Tipos}]}, 
-            {raw:true,order:[['idCentroCusto', 'DESC']]})
-            .then(resp =>{
-                res.render("centrosCustos", {cCustos:resp});
-            })
-            .catch(erro=>{
-                console.log('Catch Post')
-                console.log(erro)
-            })
+        
         
     });
     
     app.put('/centroscustos',  (req, res)=>{
-        query.update(id, campoPk, dados, rota, table, res)
+        //Construir os parâmetros de forma apriada
+
+        query.update(id, campoPk, dados, rota, CentrosCustos, res)
         //updadte(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
     })
 
 
     app.delete('/centroscustos',  (req, res)=>{
-        query.destroy(id, campoPk, rota, table, res)
+        //Construir os parâmetros de forma apriada
+        query.destroy(id, campoPk, rota, CentrosCustos, res)
         //destroy(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
     })
 

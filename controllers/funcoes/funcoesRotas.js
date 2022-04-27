@@ -70,11 +70,13 @@ function buscar(id, res, table,) {
 exports.buscar = buscar
 
 
-function create(dados, rota, table, res) {
+function create(dados, table, res) {
     table.create(dados)
-        .then(
-            res.redirect(rota)
-        ).catch(erro => {
+        .then(resp=>{
+            console.log(resp) 
+            res.json(resp)
+           
+        }).catch(erro => {
             console.log('Catch post')
             console.log(erro)
         })
