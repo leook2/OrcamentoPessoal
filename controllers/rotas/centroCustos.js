@@ -13,7 +13,6 @@ module.exports = function(app){
     })
     app.get('/centroscustos', (req, res)=>{
         query.findAll(res, 'centrosCustos', CentrosCustos, 'idCentroCusto', 'DESC', Tipos)
-        
     });
     
     app.put('/centroscustos',  (req, res)=>{
@@ -27,8 +26,7 @@ module.exports = function(app){
     app.delete('/centroscustos',  (req, res)=>{
         let id = parseInt(req.query['id'])
         console.log(id)
-        query.destroy(id, 'idCentroCusto', 'centrosCustos', CentrosCustos, res) 
-        query.findAll(res, 'centrosCustos', CentrosCustos, 'idCentroCusto', 'DESC', Tipos)
+        query.destroy(id, 'idCentroCusto', CentrosCustos, res) 
     })
 
     

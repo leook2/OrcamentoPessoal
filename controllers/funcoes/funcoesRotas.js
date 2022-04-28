@@ -21,12 +21,12 @@ function findAll(res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
 exports.findAll = findAll
 
 
-function destroy(id, campoPk, rota, table, res) {
+function destroy(id, campoPk, table, res) {
     let keyId = {}
     keyId[campoPk]=id
     table.destroy({ where: keyId })
-        .then(() => {
-            res.render(rota)
+        .then((resp) => {
+            res.json(resp)
         })
         .catch(erro => {
             console.log('Catch delete')
@@ -56,7 +56,9 @@ app.post('/centroscustos/update', (req, res) => {
 */
 
 function update(id, campoPk, dados, rota, table, res) {
-    table.update(dados, { where: { campoPk: id } })
+    let keyId = {}
+    keyId[campoPk]=id
+    table.update(dados, { where: keyId })
 }
 
 function buscar(id, res, table,) {
