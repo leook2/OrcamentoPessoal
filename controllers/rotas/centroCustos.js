@@ -12,7 +12,7 @@ module.exports = function(app){
          
     })
     app.get('/centroscustos', (req, res)=>{
-        
+        query.findAll(res, 'centrosCustos', CentrosCustos, 'idCentroCusto', 'DESC', Tipos)
         
     });
     
@@ -25,9 +25,10 @@ module.exports = function(app){
 
 
     app.delete('/centroscustos',  (req, res)=>{
-        //Construir os parâmetros de forma apriada
-        query.destroy(id, campoPk, rota, CentrosCustos, res)
-        //destroy(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
+        let id = parseInt(req.query['id'])
+        console.log(id)
+        query.destroy(id, 'idCentroCusto', 'centrosCustos', CentrosCustos, res) 
+        query.findAll(res, 'centrosCustos', CentrosCustos, 'idCentroCusto', 'DESC', Tipos)
     })
 
     
