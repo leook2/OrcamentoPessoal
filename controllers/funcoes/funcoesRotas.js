@@ -55,11 +55,16 @@ app.post('/centroscustos/update', (req, res) => {
 })
 */
 
-function update(id, campoPk, dados, rota, table, res) {
+function update(id, campoPk, dados, table, res) {
     let keyId = {}
     keyId[campoPk]=id
+    //{idCentroCusto:5}
     table.update(dados, { where: keyId })
+    .then(resp => {
+        res.json(resp)
+    })
 }
+exports.update = update
 
 function buscar(res, id, table) {
     table.findByPk(id)

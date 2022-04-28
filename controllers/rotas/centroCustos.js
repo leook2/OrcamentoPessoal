@@ -22,9 +22,14 @@ module.exports = function(app){
     })
     
     app.put('/centroscustos',  (req, res)=>{
-        //Construir os parâmetros de forma apriado
-
-        query.update(id, campoPk, dados, rota, CentrosCustos, res)
+        let id = req.body.idCentroCusto
+        let dados={
+            idTipo:req.body.idtipo,
+            nomeCentroCusto:req.body.nome
+            }
+        console.log(id,dados)
+        query.update(id, "idCentroCusto", dados, CentrosCustos,res)
+        //Construir os parâmetros de forma apriado        
         //updadte(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
     })
 

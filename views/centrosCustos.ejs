@@ -103,7 +103,8 @@
     var modal = new bootstrap.Modal(Modal);
     function exibirModal(){modal.toggle()}
     Modal.addEventListener('shown.bs.modal', (e)=>form.nome.focus())
-    Modal.addEventListener('hidden.bs.modal', (e)=>limparCampos())
+   // Modal.addEventListener('hidden.bs.modal', (e)=>limparCampos())
+    
     function gravar(){
         let dados={nome:form.nome.value, idtipo:form.idtipo.value}
         if(form.idCentroCusto.value == ''){
@@ -128,6 +129,22 @@
         .catch(erro=>{
             console.log(erro)
         });
+     }
+
+     function actionPut(url,dados){
+        console.log(url, dados)
+         axios.put(url,dados)        
+         .then(res =>{
+             if(res.status==200){
+                 alert("Dados atualizados com sucesso!")
+                 window.location.reload()
+             }else{
+                 console.log(res.status)
+             }             
+         })
+         .catch(erro=>{
+             console.log(erro)
+         });
      }
    
   </script>
