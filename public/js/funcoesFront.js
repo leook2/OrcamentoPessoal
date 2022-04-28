@@ -43,6 +43,7 @@ function editar(id){
     });
 }
 
+
 function carregarDados(cCusto){
     exibirModal()
     console.log(cCusto)
@@ -53,38 +54,49 @@ function carregarDados(cCusto){
     console.log(form)
 }
 
-/*
-function editar(id){
-  event.preventDefault()
-  const form = document.getElementById('form')
-  exibirModal()
-  let url = 'http://localhost:8182/centroscustos'
-  axios.put(url)
-  .then(resp=>{resp.json()})
-  .then(cCusto=>{
-    console.log(cCusto)
-    form.idCentrocusto.value = cCusto.idCentrocusto
-    form.nome.value = cCusto.nomeCentroCusto
-    form.nome.focus()
-  }).catch(err=>{
-    console.log(`Error: ${err}`)
+
+function actionPost(url,dados){
+  console.log(url, dados)
+  axios.post(url, dados)
+  .then(res =>{
+      if (res.status==200){
+          alert("Dados gravados com sucesso!")
+          window.location.reload()
+      } else{
+          console.log(res.status)
+      }
   })
-
+  .catch(erro=>{
+      console.log(erro)
+  });
 }
-*/
-/*
-function editar(id){
-  event.preventDefault()
-  exibirModal()
-  let url = 'http://localhost:8182/centroscustos/buscar/'+id
-  fetch(url).then((resp)=>resp.json())
-        .then(cCusto=>{
-            console.log(cCusto)
-            form.idCentroCusto.value = cCusto.idCentroCusto;
-            form.idtipo.value=cCusto.idTipo;
-            form.nome.value=cCusto.nomeCentroCusto;
-            form.nome.focus()
-        })
 
+function actionPut(url,dados){
+  console.log(url, dados)
+   axios.put(url,dados)        
+   .then(res =>{
+       if(res.status==200){
+           alert("Dados atualizados com sucesso!")
+           window.location.reload()
+       }else{
+           console.log(res.status)
+       }             
+   })
+   .catch(erro=>{
+       console.log(erro)
+   });
+}
+
+function gravarTransacao(){
+  const form = document.getElementById('form')
+  const dados = {
+    a:    form.descricao.value,
+    valor:form.valor.value,
+    tipo: form.tipo.options[tipo.selectedIndex].value
   }
-*/
+  console.log(dados)
+
+  if(form.id.value === ''){
+    actionPost('http://localhost:8182/relatorio', dados)
+  }
+}

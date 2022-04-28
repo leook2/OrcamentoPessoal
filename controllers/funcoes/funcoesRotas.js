@@ -10,7 +10,7 @@ function findAll(res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
     //console.log(...consulta)
     table.findAll(...consulta)
         .then(resp => {
-            //console.log(resp)
+            console.log(resp[0].dataValues.centros_custo)
             res.render(rota, { dados: resp })
         })
         .catch(erro => {
@@ -34,26 +34,6 @@ function destroy(id, campoPk, table, res) {
         })
 }
 exports.destroy = destroy
-
-/*
-app.post('/centroscustos/update', (req, res) => {
-    console.log(req.body)
-    let id = parseInt(req.body.id)
-    let nome = req.body.nome;
-    let idtipo = parseInt(req.body.idtipo)
-    CentrosCustos.update({
-        nomeCentroCusto: nome,
-        idTipo: idtipo
-    }, { where: { idCentroCusto: id } })
-        .then((resp) => {
-            console.log(resp)
-            res.redirect("/centroscustos")
-        })
-        .catch((erro) => {
-            console.log(erro)
-        })
-})
-*/
 
 function update(id, campoPk, dados, table, res) {
     let keyId = {}
