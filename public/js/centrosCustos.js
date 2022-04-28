@@ -48,9 +48,11 @@ function carregarDados(cCusto){
     console.log(cCusto)
     form.idCentroCusto.value = cCusto.idCentroCusto
     form.nome.value = cCusto.nomeCentroCusto
+    form.idtipo.value = cCusto.idTipo
     form.nome.focus()
     console.log(form)
 }
+
 /*
 function editar(id){
   event.preventDefault()

@@ -106,7 +106,14 @@
     Modal.addEventListener('hidden.bs.modal', (e)=>limparCampos())
     function gravar(){
         let dados={nome:form.nome.value, idtipo:form.idtipo.value}
-        actionPost(url,dados)
+        if(form.idCentroCusto.value == ''){
+            actionPost(url, dados)
+        }else if( parseInt(form.idCentroCusto.value) > 0){
+            dados.idCentroCusto = form.idCentroCusto.value
+            actionPut(url, dados)
+        }
+       
+        
      }
      function actionPost(url,dados){
         axios.post(url, dados)
