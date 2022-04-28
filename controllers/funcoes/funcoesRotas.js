@@ -22,8 +22,9 @@ exports.findAll = findAll
 
 
 function destroy(id, campoPk, rota, table, res) {
-    //ha um erro no campoPk que eu n consigo entender o pq dele não passar o como parametro aqui "table.destroy({ where: { *****campoPk****** : id } })"
-    table.destroy({ where: { idCentroCusto : id } })
+    let keyId = {}
+    keyId[campoPk]=id
+    table.destroy({ where: keyId })
         .then(() => {
             res.render(rota)
         })
