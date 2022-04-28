@@ -14,9 +14,15 @@ module.exports = function(app){
     app.get('/centroscustos', (req, res)=>{
         query.findAll(res, 'centrosCustos', CentrosCustos, 'idCentroCusto', 'DESC', Tipos)
     });
+
+    app.get('/centroscustos/buscar', (req, res)=>{
+        let id = req.query['id']
+        console.log(id)
+        query.buscar(res, id, CentrosCustos) 
+    })
     
     app.put('/centroscustos',  (req, res)=>{
-        //Construir os parâmetros de forma apriada
+        //Construir os parâmetros de forma apriado
 
         query.update(id, campoPk, dados, rota, CentrosCustos, res)
         //updadte(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 

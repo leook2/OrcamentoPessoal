@@ -28,7 +28,7 @@
                                <div class="row">
                                     <div class="col-1">
                                         <label for="idCentroCusto" class="form-label">Id</label>
-                                        <input type="text" name="idCentroCusto" class="form-control" readonly>
+                                        <input type="text" id="idCentroCusto" name="idCentroCusto" class="form-control" readonly>
                                         
                                     </div>
                                     <div class="col-8">
@@ -75,11 +75,11 @@
                             <%dados.forEach(cCusto=>{%>
                                 <tr>
                                     <td><%=cCusto.tipo.dataValues.nomeTipo%></td>
-                                    <td ><%=cCusto.nomeCentroCusto%></td>
+                                    <td><%=cCusto.nomeCentroCusto%></td>
                                     <td>
                                         <div>
                                             <% include('../public/js/relatorio.ejs') %>
-                                            <button onclick=<%-'"accEdit(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
+                                            <button onclick=<%-'"editar('+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
 
                                             <button onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-danger fa fa-times mx-1"></button>
                                         </div>

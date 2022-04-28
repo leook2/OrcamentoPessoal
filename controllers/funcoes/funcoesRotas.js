@@ -7,10 +7,10 @@ function findAll(res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
     }
     query = { raw: true, order: [[orderCampo, ordem]] }
     consulta.push(query)
-    console.log(...consulta)
+    //console.log(...consulta)
     table.findAll(...consulta)
         .then(resp => {
-            console.log(resp)
+            //console.log(resp)
             res.render(rota, { dados: resp })
         })
         .catch(erro => {
@@ -61,9 +61,10 @@ function update(id, campoPk, dados, rota, table, res) {
     table.update(dados, { where: keyId })
 }
 
-function buscar(id, res, table,) {
+function buscar(res, id, table) {
     table.findByPk(id)
         .then(resp => {
+            console.log(res, resp)
             res.json(resp)
         })
         .catch(() => {

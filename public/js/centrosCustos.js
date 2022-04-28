@@ -22,14 +22,13 @@ function accDelete(url, id){
       });
 }
 
-function accEdit(url, id){
+function editar(id){
     console.log(id)
-    console.log(url)
 
-    axios.put(`${url}?id=${id}`)
+    axios.get(`${url}/buscar?id=${id}`)
     .then(resp=>{
-      alert('Registro Atualizado com sucesso!')
-      window.location.reload()
+      console.log(resp.data)
+      carregarDados(resp.data)
   })
   .catch(function (error) {
       if (error.response) {
@@ -43,3 +42,47 @@ function accEdit(url, id){
       }
     });
 }
+
+function carregarDados(cCusto){
+    exibirModal()
+    console.log(cCusto)
+    form.idCentroCusto.value = cCusto.idCentroCusto
+    form.nome.value = cCusto.nomeCentroCusto
+    form.nome.focus()
+    console.log(form)
+}
+/*
+function editar(id){
+  event.preventDefault()
+  const form = document.getElementById('form')
+  exibirModal()
+  let url = 'http://localhost:8182/centroscustos'
+  axios.put(url)
+  .then(resp=>{resp.json()})
+  .then(cCusto=>{
+    console.log(cCusto)
+    form.idCentrocusto.value = cCusto.idCentrocusto
+    form.nome.value = cCusto.nomeCentroCusto
+    form.nome.focus()
+  }).catch(err=>{
+    console.log(`Error: ${err}`)
+  })
+
+}
+*/
+/*
+function editar(id){
+  event.preventDefault()
+  exibirModal()
+  let url = 'http://localhost:8182/centroscustos/buscar/'+id
+  fetch(url).then((resp)=>resp.json())
+        .then(cCusto=>{
+            console.log(cCusto)
+            form.idCentroCusto.value = cCusto.idCentroCusto;
+            form.idtipo.value=cCusto.idTipo;
+            form.nome.value=cCusto.nomeCentroCusto;
+            form.nome.focus()
+        })
+
+  }
+*/
