@@ -47,7 +47,7 @@
                                </div>
                             </form>
                             <div class="modal-footer">
-                                <button onclick="gravar()" class="btn btn-success"> <i class="fas fa-save"></i> Gravar </button>
+                                <button onclick="gravarCcusto()" class="btn btn-success"> <i class="fas fa-save"></i> Gravar </button>
                             </div>    
                         </div>
                     </div>  
@@ -79,7 +79,7 @@
                                     <td>
                                         <div>
                                             <% include('../public/js/relatorio.ejs') %>
-                                            <button onclick=<%-'"editar('+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
+                                            <button onclick=<%-'"editar(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
 
                                             <button onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-danger fa fa-times mx-1"></button>
                                         </div>
@@ -95,25 +95,3 @@
     </main>
     <%- include('./partials/footer.ejs')%>
 </body>
-
-<script>
-    const url ="http://localhost:8182/centroscustos" 
-
-    var form = document.getElementById('form');
-    var Modal = document.getElementById('modal')
-
-    var modal = new bootstrap.Modal(Modal);
-    function exibirModal(){modal.toggle()}
-    Modal.addEventListener('shown.bs.modal', (e)=>form.nome.focus())
-   // Modal.addEventListener('hidden.bs.modal', (e)=>limparCampos())
-    
-    function gravar(){
-        let dados={nome:form.nome.value, idtipo:form.idtipo.value}
-        if(form.idCentroCusto.value == ''){
-            actionPost(url, dados)
-        }else if( parseInt(form.idCentroCusto.value) > 0){
-            dados.idCentroCusto = form.idCentroCusto.value
-            actionPut(url, dados)
-        }   
-     } 
-</script>

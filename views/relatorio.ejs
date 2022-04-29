@@ -15,15 +15,15 @@
         <!--==============Modal====================-->
         <section class=" section-modal__intro">
             <nav class="container">
-                <button class="btn btn-primary section-modal__filtrar" data-bs-toggle="modal" data-bs-target="#reg-modal">
-                    Filtrar
+                <button class="btn btn-primary section-modal__filtrar" onclick="exibirModal()" data-bs-toggle="modal" data-bs-target="#reg-modal">
+                    Inserir
                 </button>
                 <button class="section-modal__btn-home"><a href="/home">Voltar para a Home</a><i class="fa fa-solid fa-house"></i></button>
             </nav>
 
             <!--==============Corpo do Modal====================-->
-            <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-title">O que deseja?</h4>
@@ -165,7 +165,7 @@
                                 <td><%= element.valorTransacao %> </td>
                                 <td>
                                     <div class="botoesAcc">
-                                        <button onclick=<%-'"editar('+element.idTransacao+')"'%>>Editar</button>
+                                        <button onclick=<%-'"editar(`/relatorio`,'+element.idTransacao+')"'%>>Editar</button>
                                         <button onclick=<%-'"accDelete(`/relatorio`,'+element.idTransacao+')"'%>>Excluir</button>
                                     </div>
                                 </td>

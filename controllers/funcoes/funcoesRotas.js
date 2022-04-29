@@ -10,7 +10,7 @@ function findAll(res, rota, table, orderCampo, ordem = 'DESC', includeTable) {
     //console.log(...consulta)
     table.findAll(...consulta)
         .then(resp => {
-            console.log(resp[0].dataValues.centros_custo)
+            //console.log(resp[0].dataValues.centros_custo)
             res.render(rota, { dados: resp })
         })
         .catch(erro => {
@@ -42,6 +42,10 @@ function update(id, campoPk, dados, table, res) {
     table.update(dados, { where: keyId })
     .then(resp => {
         res.json(resp)
+    })
+    .catch(() => {
+        res.status(500)
+        res.json({ erro: 'Dados não encontrados' })
     })
 }
 exports.update = update

@@ -7,7 +7,6 @@ module.exports = function(app){
     
     app.get('/relatorio',  (req, res)=>{
         query.findAll(res, 'relatorio', Transacoes, 'idTransacao', 'DESC', CentrosCustos)
-        //findAll(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
     })
 
       app.get("/relatorio/teste", (req, res) => {
@@ -45,7 +44,7 @@ module.exports = function(app){
 
       app.post('/relatorio', (req, res)=>{
         let dados = {
-          descricaoTransacao: req.body.a,
+          descricaoTransacao: req.body.descricao,
           valorTransacao: req.body.valor,
           idCentroCusto: req.body.tipo
         }
@@ -59,9 +58,24 @@ module.exports = function(app){
       })
 
       app.get('/relatorio/buscar', (req, res)=>{
+        const id = req.query['id']
+        console.log(id)
 
-        query.buscar()
+        query.buscar(res, id, Transacoes)
       })
 
+      app.put('/relatorio',  (req, res)=>{
+        
+        const id = req.body.id
+        let dados = {
+          descricaoTransacao: req.body.descricao,
+          valorTransacao: req.body.valor,
+          idCentroCusto: req.body.tipo
+        }
+        query.update(id, 'idTransacao', dados, Transacoes, res)
+        
+       
+        
+    })
 
 }

@@ -1,4 +1,16 @@
+    const form = document.getElementById('form');
+    var Modal  = document.getElementById('modal')
+     
 
+    var modal  = new bootstrap.Modal(Modal);
+
+    Modal.addEventListener('shown.bs.modal', (e)=>{
+      console.log('ativo')
+    })
+     // Modal.addEventListener('hidden.bs.modal', (e)=>limparCampos())
+
+
+/*================================FUNCOES================================= */
 function accDelete(url, id){
     console.log(id)
     console.log(url)
@@ -22,13 +34,17 @@ function accDelete(url, id){
       });
 }
 
-function editar(id){
-    console.log(id)
+function editar(url, id){
 
-    axios.get(`${url}/buscar?id=${id}`)
-    .then(resp=>{
-      console.log(resp.data)
-      carregarDados(resp.data)
+  axios.get(`${url}/buscar?id=${id}`)
+  .then(resp=>{
+
+    if(url === '/centroscustos'){
+      carregarDadosCcusto(resp.data)
+    }else if(url === '/relatorio'){
+      carregarDadosRelatorio(resp.data)
+    }
+
   })
   .catch(function (error) {
       if (error.response) {
@@ -44,7 +60,12 @@ function editar(id){
 }
 
 
-function carregarDados(cCusto){
+
+function exibirModal(){
+  modal.toggle()
+}
+
+function carregarDadosCcusto(cCusto){
     exibirModal()
     console.log(cCusto)
     form.idCentroCusto.value = cCusto.idCentroCusto
@@ -54,9 +75,17 @@ function carregarDados(cCusto){
     console.log(form)
 }
 
+function carregarDadosRelatorio(relatorio){
+    exibirModal()
+    form.id.value = relatorio.idTransacao
+    form.descricao.value = relatorio.descricaoTransacao
+    form.valor.value = relatorio.valorTransacao
+    form.tipo.options[tipo.selectedIndex].value = relatorio.idCentroCusto
+}
+
+
 
 function actionPost(url,dados){
-  console.log(url, dados)
   axios.post(url, dados)
   .then(res =>{
       if (res.status==200){
@@ -87,16 +116,36 @@ function actionPut(url,dados){
    });
 }
 
+
+
+
 function gravarTransacao(){
   const form = document.getElementById('form')
   const dados = {
-    a:    form.descricao.value,
-    valor:form.valor.value,
-    tipo: form.tipo.options[tipo.selectedIndex].value
+    descricao:form.descricao.value,
+    valor:    form.valor.value,
+    tipo:     form.tipo.options[tipo.selectedIndex].value
   }
-  console.log(dados)
 
   if(form.id.value === ''){
+    console.log('entro no post')
     actionPost('http://localhost:8182/relatorio', dados)
+  }else if(parseInt(form.id.value) >=1){
+    console.log('entro no put')
+    actionPut('http://localhost:8182/relatorio', dados)
   }
 }
+
+function gravarCcusto(){
+  let dados={
+    nome:  form.nome.value, 
+    idtipo:form.idtipo.value
+  }
+
+  if(form.idCentroCusto.value == ''){
+      actionPost("http://localhost:8182/centroscustos" , dados)
+  }else if( parseInt(form.idCentroCusto.value) > 0){
+      dados.idCentroCusto = form.idCentroCusto.value
+      actionPut("http://localhost:8182/centroscustos" , dados)
+  }   
+} 
