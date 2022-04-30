@@ -4,6 +4,7 @@
     <%- include('./partials/head.ejs')%>
     <link rel="stylesheet" href="../css/relatorio.css">
     <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoesFront.js" defer></script>
     <title>Relatório</title>
 </head>
 <body>
@@ -14,55 +15,61 @@
         <!--==============Modal====================-->
         <section class=" section-modal__intro">
             <nav class="container">
-                <button class="btn btn-primary section-modal__filtrar" data-bs-toggle="modal" data-bs-target="#reg-modal">
-                    Filtrar
+                <button class="btn btn-primary section-modal__filtrar" onclick="exibirModal()" data-bs-toggle="modal" data-bs-target="#reg-modal">
+                    Inserir
                 </button>
                 <button class="section-modal__btn-home"><a href="/home">Voltar para a Home</a><i class="fa fa-solid fa-house"></i></button>
             </nav>
 
             <!--==============Corpo do Modal====================-->
-            <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-title">O que deseja?</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" id="form">
+                            <form id="form">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="tipo" class="form-label">Tipo</label>
-                                        <select name="tipo" class="w-100 form-select" id="" data-live-search="true">
-                                            <option value="">Receita</option>
-                                            <option value="">Despesa</option>
-                                            <option value="">Investimento</option>
+                                    <div class="col-md-1">
+                                        <label for="id" class="form-label">ID</label>
+                                        <input type="text" name="id" id="id" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <label for="tipo" class="form-label">Tipo (receita/despesa/investimento)</label>
+                                        <select name="tipo" class="w-100 form-select" id="tipo" data-live-search="true">
+                                            <% dados.forEach(element => { %>
+                                                <option value="<%= element.centros_custo.dataValues.idCentroCusto %> "><%= element.centros_custo.dataValues.nomeCentroCusto %></option>
+                                            <% }) %>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="nome" class="form-label">Nome</label>
-                                        <input type="text" name="nome" class="form-control">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="descricao" class="form-label">Descrição</label>
+                                        <input type="text" name="descricao" id="descricao" class="form-control">
                                     </div>
                                 </div>
+                                
                                 <div class="row">
-                                    <div class="col-md-7">
-                                        <label for="data" class="form-label">Data</label>
-                                        <input type="month" name="data" class="form-month form-control">
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label for="periodo" class="form-label">Periodo</label>
-                                        <input type="text" name="periodo" class="form-control">
+                                    <div class="col-md-6">
+                                        <label for="valor" class="form-label">Valor</label>
+                                        <input type="number" name="valor" id="valor" class="form-control">
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" id="filtrar" >Filtrar</button>
+                            <button class="btn btn-primary" onclick="gravarTransacao()" id="gravar" >Gravar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+
         <!--==============Saida====================-->
         <section class="relatorio-saida container">
             <div class="relatorio-saida-card relatorio__receita">
@@ -137,10 +144,7 @@
                             <th>Descrição</th>
                             <th>Valor</th>
                             <th>
-                            <span>Ordenar |</span>
-                                <button class="btn btn-primary mx-1" >Mais alto</button>
-                                <button class="btn btn-danger mx-1">Mais baixo</button>
-                                
+                            <span>Ações</span>             
                             </th>
                         </tr>
                     </thead>
@@ -154,10 +158,17 @@
                                 <% }else if (element.centros_custo.dataValues.idTipo ==1) { %>
                                     Despesa
                                 <% } %>
-                             </td>
+                                </td>
+
                                 <td><%= element.centros_custo.dataValues.nomeCentroCusto %> </td>
                                 <td><%= element.descricaoTransacao %> </td>
                                 <td><%= element.valorTransacao %> </td>
+                                <td>
+                                    <div class="botoesAcc">
+                                        <button onclick=<%-'"editar(`/relatorio`,'+element.idTransacao+')"'%>>Editar</button>
+                                        <button onclick=<%-'"accDelete(`/relatorio`,'+element.idTransacao+')"'%>>Excluir</button>
+                                    </div>
+                                </td>
                             </tr>
                         <% }) %>
                 

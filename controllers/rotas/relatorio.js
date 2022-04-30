@@ -1,5 +1,3 @@
-const { Op }        = require('sequelize');
-const Sequelize     = require('sequelize');
 const CentrosCustos = require('../../models/CentrosCustos')()
 const Tipos         = require('../../models/Tipos')()
 const Transacoes    = require('../../models/Transacoes')()
@@ -9,23 +7,9 @@ module.exports = function(app){
     
     app.get('/relatorio',  (req, res)=>{
         query.findAll(res, 'relatorio', Transacoes, 'idTransacao', 'DESC', CentrosCustos)
-        //findAll(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
     })
 
-    app.get('/relatorio/filter', (req, res)=>{
-     query.findAll(res, 'relatorio', Transacoes, 'idTransacao', 'DESC', CentrosCustos)
-      const b= CentrosCustos.findAll({
-        where: {idTipo: '2'} 
-      })
-      console.log(b)
-  if (b === null) {
-    console.log('Not found!');
-  } else {
-    console.log(b.idTipo); // 'My Title'
-  }
-      })
-
-    app.get("/relatorio/teste", (req, res) => {
+      app.get("/relatorio/teste", (req, res) => {
         /*Transacoes.sum('valorTransacao', {where: {idCentroCusto:1}})
           .then(resp => {
             console.log(resp)
@@ -58,6 +42,40 @@ module.exports = function(app){
           })
       });
 
-}
+      app.post('/relatorio', (req, res)=>{
+        let dados = {
+          descricaoTransacao: req.body.descricao,
+          valorTransacao: req.body.valor,
+          idCentroCusto: req.body.tipo
+        }
+        console.log(dados)
+        query.create(dados, Transacoes, res)
+      })
 
-/*<!--     --> */
+      app.delete('/relatorio', (req, res)=>{
+        const id = req.query['id']
+        query.destroy(id, 'idTransacao', Transacoes, res)
+      })
+
+      app.get('/relatorio/buscar', (req, res)=>{
+        const id = req.query['id']
+        console.log(id)
+
+        query.buscar(res, id, Transacoes)
+      })
+
+      app.put('/relatorio',  (req, res)=>{
+        
+        const id = req.body.id
+        let dados = {
+          descricaoTransacao: req.body.descricao,
+          valorTransacao: req.body.valor,
+          idCentroCusto: req.body.tipo
+        }
+        query.update(id, 'idTransacao', dados, Transacoes, res)
+        
+       
+        
+    })
+
+}

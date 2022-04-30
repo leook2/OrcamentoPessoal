@@ -28,9 +28,7 @@ module.exports = function(app){
             nomeCentroCusto:req.body.nome
             }
         console.log(id,dados)
-        query.update(id, "idCentroCusto", dados, CentrosCustos,res)
-        //Construir os parâmetros de forma apriado        
-        //updadte(res, '/relatorio', Transacoes, 'idCentroCusto', 'DESC', CentrosCustos) 
+        query.update(id, "idCentroCusto", dados, CentrosCustos,res)      
     })
 
 
