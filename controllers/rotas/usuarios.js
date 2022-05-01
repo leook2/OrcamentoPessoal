@@ -1,8 +1,9 @@
 const query = require('../funcoes/funcoesRotas')
-const usuarios = require("../../models/Usuarios")
+const usuarios = require("../../models/Usuarios")()
 module.exports = function (app) {
     app.post('/add', (req, res) => {
-        const dados = { nomeUsuario: req.body.nome, email: req.body.email, senha: req.body.senha }
+        const dados = { nomeUsuario: req.body.nome, email: req.body.email, hashSenha: req.body.senha }
+        console.log(dados)
         query.create(dados, usuarios, res)
     })
 
