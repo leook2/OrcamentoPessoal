@@ -27,7 +27,7 @@ module.exports = function (app) {
             const senha = auth.criptogragarSenha(req.body.senha);//Criptografa a senha do usuario
             const dados = { nomeUsuario: req.body.nome, email: req.body.email, hashSenha: senha }
             query.create(dados, Usuarios, res)
-            res.render('login')
+            res.redirect('login')
         }
     })
 
@@ -43,18 +43,29 @@ module.exports = function (app) {
     }))
 
     app.post('/login', (req, res) => {
-        const emailDigitado = req.body.email;
+        const usuario = req.body.email;
         const senha = auth.criptogragarSenha(req.body.senha);
-        Usuarios.findOne({where:{ email: emailDigitado }})
+        Usuarios.findOne({where:{ email: usuario }})
             .then(resp => {
                 console.log(resp)
-                if (senha == resp.hashSenha && emailDigitado == resp.email) {
-                    req.session.user = req.body.email;
+                if (senha == resp.hashSenha && usuario == resp.email) {
+                    req.session.usuario = resp.email;
+                    res.redirect('bemvindo')
                 } else {
+                    alert('usuario invalido')
                     console.log('erro')
                 }
             })
     })
+
+    app.get('/bemvindo', (req, res)=>{
+        if(req.session.usuario){
+            res.render('bemvindo', {usuario:req.session.usuario})
+        }else{
+            res.send('usuario negado')
+        }
+    })
+    
     app.get('/login', (req, res) => {
         res.render('login')
     })

@@ -35,8 +35,6 @@ function accDelete(url, id) {
 }
 
 function editar(url, id) {
-
-function editar(url, id){
   console.log(url, id)
 
 
@@ -49,11 +47,11 @@ function editar(url, id){
         carregarDadosRelatorio(resp.data)
       }
 
-    if(url === '/centroscustos'){
-      carregarDadosCcusto(resp.data)
-    }else if(url === '/transacao'){
-      carregarDadosTransacoes(resp.data)
-    }
+      if (url === '/centroscustos') {
+        carregarDadosCcusto(resp.data)
+      } else if (url === '/transacao') {
+        carregarDadosTransacoes(resp.data)
+      }
 
 
     })
@@ -93,13 +91,13 @@ function carregarDadosRelatorio(relatorio) {
   form.descricao.value = relatorio.descricaoTransacao
   form.valor.value = relatorio.valorTransacao
   form.tipo.options[tipo.selectedIndex].value = relatorio.idCentroCusto
-
-function carregarDadosTransacoes(relatorio){
-    exibirModal()
-    form.id.value = relatorio.idTransacao
-    form.descricao.value = relatorio.descricaoTransacao
-    form.valor.value = relatorio.valorTransacao
-    form.tipo.options[tipo.selectedIndex].value = relatorio.idCentroCusto
+}
+function carregarDadosTransacoes(relatorio) {
+  exibirModal()
+  form.id.value = relatorio.idTransacao
+  form.descricao.value = relatorio.descricaoTransacao
+  form.valor.value = relatorio.valorTransacao
+  form.tipo.options[tipo.selectedIndex].value = relatorio.idCentroCusto
 
 }
 
@@ -150,20 +148,20 @@ function autUsuario() {
     .catch(erro => {
       console.log(erro)
     });
-
-function actionPut(url,dados){
-   axios.put(url,dados)        
-   .then(res =>{
-       if(res.status==200){
-           alert("Dados atualizados com sucesso!")
-           window.location.reload()
-       }else{
-           console.log(res.status)
-       }             
-   })
-   .catch(erro=>{
-       console.log(erro)
-   });
+}
+function actionPut(url, dados) {
+  axios.put(url, dados)
+    .then(res => {
+      if (res.status == 200) {
+        alert("Dados atualizados com sucesso!")
+        window.location.reload()
+      } else {
+        console.log(res.status)
+      }
+    })
+    .catch(erro => {
+      console.log(erro)
+    });
 
 }
 
@@ -185,7 +183,7 @@ function gravarTransacao() {
   } else if (parseInt(form.id.value) >= 1) {
 
     actionPost('http://localhost:8182/transacao', dados)
-  }else if(parseInt(form.id.value) >=1){
+  } else if (parseInt(form.id.value) >= 1) {
     dados.id = form.id.value
 
     console.log('entro no put')
