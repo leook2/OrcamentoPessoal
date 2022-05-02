@@ -10,8 +10,7 @@
 </head>
 <body>
     <%- include('./partials/header.ejs')%>
-    
-
+ 
     <main class="container">
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -23,7 +22,7 @@
                 <div class="modal-body">
                   
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body">                           
                             <form id="form">
                                <div class="row">
                                     <div class="col-1">
@@ -60,7 +59,6 @@
                     <h3 class="display-4 text-center text-light"><i class="fas fa-chart-bar"></i> Centro de Custos </h3>
                 </div>
                 <div class="card-body">
-                    
                     <table class="table align-baseline table-striped table-hover table-sm text-center">
                         <thead>
                             <tr>
@@ -72,24 +70,26 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="tabela">
-                            <%dados.forEach(cCusto=>{%>
-                                <tr>
-                                    <td><%=cCusto.tipo.dataValues.nomeTipo%></td>
-                                    <td><%=cCusto.nomeCentroCusto%></td>
-                                    <td>
-                                        <div>
-                                            <% include('../public/js/relatorio.ejs') %>
-                                            <button onclick=<%-'"editar(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
-
-                                            <button onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-danger fa fa-times mx-1"></button>
-                                        </div>
-                                      </td>
-                                </tr>
-                            <%})%>
-                          
-                        </tbody>
-                    </table>
+                        </table>
+                        <div class="tbscroll">
+                        <table class="table table-striped align-baseline table-striped table-hover table-sm text-center">
+                            <tbody id="tabela">
+                                <%dados.forEach(cCusto=>{%>
+                                    <tr>
+                                        <td><%=cCusto.tipo.dataValues.nomeTipo%></td>
+                                        <td><%=cCusto.nomeCentroCusto%></td>
+                                        <td>
+                                            <div>
+                                                <button onclick=<%-'"editar(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
+    
+                                                <button onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-danger fa fa-times mx-1"></button>
+                                            </div>
+                                          </td>
+                                    </tr>
+                                <%})%>
+                        </table>                                
+                    </div>  
+                    
                 </div>
           </div>
          
