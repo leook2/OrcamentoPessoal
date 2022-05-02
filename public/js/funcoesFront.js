@@ -34,29 +34,27 @@ function accDelete(url, id) {
     });
 }
 
-<<<<<<< HEAD
 function editar(url, id) {
-=======
+
 function editar(url, id){
   console.log(url, id)
->>>>>>> 8816c4df89173f30f4fcc4c42e5059d1922812cd
+
 
   axios.get(`${url}/buscar?id=${id}`)
     .then(resp => {
 
-<<<<<<< HEAD
       if (url === '/centroscustos') {
         carregarDadosCcusto(resp.data)
       } else if (url === '/relatorio') {
         carregarDadosRelatorio(resp.data)
       }
-=======
+
     if(url === '/centroscustos'){
       carregarDadosCcusto(resp.data)
     }else if(url === '/transacao'){
       carregarDadosTransacoes(resp.data)
     }
->>>>>>> 8816c4df89173f30f4fcc4c42e5059d1922812cd
+
 
     })
     .catch(function (error) {
@@ -88,21 +86,21 @@ function carregarDadosCcusto(cCusto) {
   console.log(form)
 }
 
-<<<<<<< HEAD
+
 function carregarDadosRelatorio(relatorio) {
   exibirModal()
   form.id.value = relatorio.idTransacao
   form.descricao.value = relatorio.descricaoTransacao
   form.valor.value = relatorio.valorTransacao
   form.tipo.options[tipo.selectedIndex].value = relatorio.idCentroCusto
-=======
+
 function carregarDadosTransacoes(relatorio){
     exibirModal()
     form.id.value = relatorio.idTransacao
     form.descricao.value = relatorio.descricaoTransacao
     form.valor.value = relatorio.valorTransacao
     form.tipo.options[tipo.selectedIndex].value = relatorio.idCentroCusto
->>>>>>> 8816c4df89173f30f4fcc4c42e5059d1922812cd
+
 }
 
 
@@ -122,7 +120,6 @@ function actionPost(url, dados) {
     });
 }
 
-<<<<<<< HEAD
 function actionPut(url, dados) {
   console.log(url, dados)
   axios.put(url, dados)
@@ -153,7 +150,7 @@ function autUsuario() {
     .catch(erro => {
       console.log(erro)
     });
-=======
+
 function actionPut(url,dados){
    axios.put(url,dados)        
    .then(res =>{
@@ -167,7 +164,7 @@ function actionPut(url,dados){
    .catch(erro=>{
        console.log(erro)
    });
->>>>>>> 8816c4df89173f30f4fcc4c42e5059d1922812cd
+
 }
 
 
@@ -183,14 +180,14 @@ function gravarTransacao() {
 
   if (form.id.value === '') {
     console.log('entro no post')
-<<<<<<< HEAD
+
     actionPost('http://localhost:8182/relatorio', dados)
   } else if (parseInt(form.id.value) >= 1) {
-=======
+
     actionPost('http://localhost:8182/transacao', dados)
   }else if(parseInt(form.id.value) >=1){
     dados.id = form.id.value
->>>>>>> 8816c4df89173f30f4fcc4c42e5059d1922812cd
+
     console.log('entro no put')
     actionPut('http://localhost:8182/transacao', dados)
   }
@@ -208,4 +205,4 @@ function gravarCcusto() {
     dados.idCentroCusto = form.idCentroCusto.value
     actionPut("http://localhost:8182/centroscustos", dados)
   }
-} 
+}
