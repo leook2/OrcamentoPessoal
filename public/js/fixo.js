@@ -1,6 +1,12 @@
 const btnNav =document.getElementById('navResponsive')
-btnNav.addEventListener('click', ()=>{
-    const menuResponsive = document.getElementById('menuResponsive')
-    menuResponsive.classList.toggle('active')
-})
+function abrirMenu(event){
+
+    if(event.type === 'touchstart') event.preventDefault()
+     const menuResponsive = document.getElementById('menuResponsive')
+     menuResponsive.classList.toggle('active')
+    
+}
+btnNav.addEventListener('click', abrirMenu)
+btnNav.addEventListener('touchstart', abrirMenu)
+
 
