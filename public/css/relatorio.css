@@ -1,14 +1,60 @@
 body{
     background-color: rgb(222, 221, 236);
 }
+.cabecalho-principal-nav-relatorio{
+    width: 20rem;
+    position: absolute;
+    top: 0;
+    height: 30rem;
+    width: 0;
+    background-color: rgb(155, 212, 158);
+    border-radius: 5px;
+    display: block;
+    transition: .4s;
+    visibility: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.cabecalho-principal-nav-relatorio-itens{
+    padding: .5rem;
+    margin: 1rem;
+    margin-top: 2.5rem;
+}
+.cabecalho-principal-nav-relatorio-itens-a{
+    display: block;
+    margin-top: 2.5rem;
+    padding: .5rem;
+    color: rgb(19, 18, 18);
+}
+.last::after{
+    content: '';
+    display: inline;
+    position: absolute;
+    width: 100%;
+    border-bottom: 2px rgb(19, 18, 18) solid;
+    border-right: none;
+    left: -2rem;
+}
+.btn-accout__relatorio{
+    text-align: center;
+    margin: 1.5rem;
+}
+.btn-accout__sign-in{
+    color: rgb(19, 18, 18);
+}
+.btn-accout__sign-up{
+    background-color: rgba(255, 255, 255, 0.137);
+    color: rgb(255, 255, 255);
+}
 .section-modal__intro{
     background-color: rgb(222, 221, 236);
+    margin-top: 9rem;
 }
 .section-modal__btn-home{
     margin-left: 2rem;
     border: none;
     background-color: rgb(222, 221, 236);
-    color: black;
+    color: rgb(19, 18, 18);
 }
 .relatorio-saida{
     display: flex;
@@ -21,7 +67,7 @@ body{
 }
 .relatorio-saida-card{
     width: 12rem;
-    color: rgb(0, 0, 0);
+    color: rgb(19, 18, 18);
 }
 .relatorio-saida-card:not(:first-child){
     margin-left: 3rem;
@@ -37,4 +83,32 @@ body{
 }
 .saida__investimento{
     color: rgb(22, 22, 204);
+}
+.btn__table{
+    border-radius: 10px;
+    width: 3rem;
+}
+
+
+/*==================responsive-items==================*/
+
+.btn__responsive-relatorio{
+    z-index: 100;
+    display: block;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 38px;
+    border-top: 3px rgb(19, 18, 18) solid;
+}
+.btn__responsive-relatorio::before, .btn__responsive-relatorio::after{
+    display: block;
+    content: '';
+    width: 38px;
+    border-top: 3px currentColor solid;
+    margin-top: 6px;
+}
+#headerNav.active{
+    width: 20rem;
+    visibility: visible;
 }
