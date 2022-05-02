@@ -4,9 +4,8 @@
     <%- include('./partials/head.ejs')%>
     <link rel="stylesheet" href="../css/relatorio.css">
     <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
-    <script src="../js/funcoesFront.js" defer></script>
-    <script src="../js/relatorioFront.js" defer></script>
-    <title>Relatório</title>
+    <script src="../js/transacaoFront.js" defer></script>
+    <title>Transação</title>
 </head>
 <body>
 
@@ -19,8 +18,10 @@
                     <li><a class="cabecalho-principal-nav-relatorio-itens-a" href="/usuario">Usuario</a></li>
                     <li><a class="cabecalho-principal-nav-relatorio-itens-a" href="/centroscustos">Gerenciador</a>
                     </li>
+                    <li><a class="cabecalho-principal-nav-relatorio-itens-a" href="/relatorio">Relatorio</a>
+                    </li>
                     <li><a class="cabecalho-principal-nav-relatorio-itens-a last"
-                            href="/relatorio">Relatório</a></li>
+                            href="/transacao">Transação</a></li>
                 </ul>
                 <div class="cabecalho-principal-nav-btn btn-accout__relatorio">
                     <button class="cabecalho-principal-nav-sign-in btn-accout__sign-in">Sign in</button>
@@ -30,175 +31,104 @@
         </div>
     </header>
 
-    <main>
-        <!--==============Modal====================-->
-        <section class=" section-modal__intro">
-            <nav class="container">
-                <button class="btn btn-primary section-modal__filtrar" onclick="exibirModal()" data-bs-toggle="modal" data-bs-target="#reg-modal">
-                    Inserir
-                </button>
-                <button class="section-modal__btn-home"><a href="/home">Voltar para a Home</a><i class="fa fa-solid fa-house"></i></button>
-            </nav>
-
-            <!--==============Corpo do Modal====================-->
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-title">O que deseja?</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="form">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <label for="id" class="form-label">ID</label>
-                                        <input type="text" name="id" id="id" class="form-control" readonly>
-                                    </div>
-                                    <div class="col-md-11">
-                                        <label for="tipo" class="form-label">Tipo (receita/despesa/investimento)</label>
-                                        <select name="tipo" class="w-100 form-select" id="tipo" data-live-search="true">
-                                            <% dados.forEach(element => { %>
-                                                <option value="<%= element.centros_custo.dataValues.idCentroCusto %> "><%= element.centros_custo.dataValues.nomeCentroCusto %></option>
-                                            <% }) %>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label for="descricao" class="form-label">Descrição</label>
-                                        <input type="text" name="descricao" id="descricao" class="form-control">
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="valor" class="form-label">Valor</label>
-                                        <input type="number" name="valor" id="valor" class="form-control">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" onclick="gravarTransacao()" id="gravar" >Gravar</button>
-                        </div>
-                    </div>
+<main>
+    <div class="tabela-relatorio__section">
+        <section class="relatorio-saida container">
+            <div class="relatorio-saida-card relatorio__receita">
+                <div class="relatorio-saida-receita-resultado">
+                    <div class="saida saida__receita"><% include('../public/js/transacoes.ejs') %>
+                        <% var result = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo ==2) { %>
+                        <% result.push(element.valorTransacao) %>
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(result) %>
+                     </h3></div>
                 </div>
+                <h2 class="relatorio-h2 relatorio-h2__receita">Receita</h2>
+            </div>
+            <div class="relatorio-saida-card relatorio__despesa">
+                <div class="relatorio-saida-despesa-resultado">
+                    <div class="saida saida__despesa"><% var result = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo ==1) { %>
+                        <% result.push(element.valorTransacao) %>
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(result) %>
+                     </h3></div>
+                </div>
+                <h2 class="relatorio-h2 relatorio-h2__despesa">Despesa</h2>
+            </div>
+            <div class="relatorio-saida-card relatorio__investimento">
+                <div class="relatorio-saida-investimento-resultado">
+                    <div class="saida saida__investimento"><% var result = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo ==3) { %>
+                        <% result.push(element.valorTransacao) %>
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(result) %>
+                     </h3></div>
+                </div>
+                <h2 class="relatorio-h2 relatorio-h2__investimento">Investimento</h2>
+            </div>
+            <div class="relatorio-saida-card relatorio__total">
+                <div class="relatorio-saida-total-resultado">
+                    <div class="saida saida__total" ><% var receita = [] %>
+                        <% var saida = [] %>
+                        <% dados.forEach(element => { %>
+                      <% if (element.centros_custo.dataValues.idTipo ===2) { %>
+                        <% receita.push(element.valorTransacao) %>
+                      <% } %>
+                      <% if (element.centros_custo.dataValues.idTipo ===1) { %>
+                        <% saida.push(element.valorTransacao) %>
+                      <% } %>
+                    <% }) %>
+                    <h3>
+                        <%= parseFloatt(receita, saida) %>
+                     </h3></div>
+                </div>
+                <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
             </div>
         </section>
-
-
-        <!--==============Saida====================-->
-        <div class="tabela-relatorio__section">
-            <section class="relatorio-saida container">
-                <div class="relatorio-saida-card relatorio__receita">
-                    <div class="relatorio-saida-receita-resultado">
-                        <div class="saida saida__receita"><% include('../public/js/relatorio.ejs') %>
-                            <% var result = [] %>
-                            <% dados.forEach(element => { %>
-                          <% if (element.centros_custo.dataValues.idTipo ==2) { %>
-                            <% result.push(element.valorTransacao) %>
-                          <% } %>
-                        <% }) %>
-                        <h3>
-                            <%= parseFloatt(result) %>
-                         </h3></div>
-                    </div>
-                    <h2 class="relatorio-h2 relatorio-h2__receita">Receita</h2>
-                </div>
-                <div class="relatorio-saida-card relatorio__despesa">
-                    <div class="relatorio-saida-despesa-resultado">
-                        <div class="saida saida__despesa"><% var result = [] %>
-                            <% dados.forEach(element => { %>
-                          <% if (element.centros_custo.dataValues.idTipo ==1) { %>
-                            <% result.push(element.valorTransacao) %>
-                          <% } %>
-                        <% }) %>
-                        <h3>
-                            <%= parseFloatt(result) %>
-                         </h3></div>
-                    </div>
-                    <h2 class="relatorio-h2 relatorio-h2__despesa">Despesa</h2>
-                </div>
-                <div class="relatorio-saida-card relatorio__investimento">
-                    <div class="relatorio-saida-investimento-resultado">
-                        <div class="saida saida__investimento"><% var result = [] %>
-                            <% dados.forEach(element => { %>
-                          <% if (element.centros_custo.dataValues.idTipo ==3) { %>
-                            <% result.push(element.valorTransacao) %>
-                          <% } %>
-                        <% }) %>
-                        <h3>
-                            <%= parseFloatt(result) %>
-                         </h3></div>
-                    </div>
-                    <h2 class="relatorio-h2 relatorio-h2__investimento">Investimento</h2>
-                </div>
-                <div class="relatorio-saida-card relatorio__total">
-                    <div class="relatorio-saida-total-resultado">
-                        <div class="saida saida__total" ><% var receita = [] %>
-                            <% var saida = [] %>
-                            <% dados.forEach(element => { %>
-                          <% if (element.centros_custo.dataValues.idTipo ===2) { %>
-                            <% receita.push(element.valorTransacao) %>
-                          <% } %>
-                          <% if (element.centros_custo.dataValues.idTipo ===1) { %>
-                            <% saida.push(element.valorTransacao) %>
-                          <% } %>
-                        <% }) %>
-                        <h3>
-                            <%= parseFloatt(receita, saida) %>
-                         </h3></div>
-                    </div>
-                    <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
-                </div>
-            </section>
-            <section>
-                <div class="container">
-                    <table class="table align-baseline table-striped table-hover table-sm text-center">
-                        <thead>
+        <section>
+            <div class="container">
+                <table class="table align-baseline table-striped table-hover table-sm text-center">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <% dados.forEach(element => { %>
                             <tr>
-                                <th>Tipo</th>
-                                <th>Nome</th>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th>
-                                <span>Ações</span>
-                                </th>
+                                <td> <% if (element.centros_custo.dataValues.idTipo ==2) { %>
+                                    Receita
+                                <% } else if (element.centros_custo.dataValues.idTipo ==3) { %>
+                                    Investimento
+                                <% }else if (element.centros_custo.dataValues.idTipo ==1) { %>
+                                    Despesa
+                                <% } %>
+                                </td>
+                                <td><%= element.centros_custo.dataValues.nomeCentroCusto %> </td>
+                                <td><%= element.descricaoTransacao %> </td>
+                                <td>R$ <%= element.valorTransacao %> </td>
                             </tr>
-                        </thead>
-                        <tbody id="tbody">
-                            <% dados.forEach(element => { %>
-                                <tr>
-                                    <td> <% if (element.centros_custo.dataValues.idTipo ==2) { %>
-                                        Receita
-                                    <% } else if (element.centros_custo.dataValues.idTipo ==3) { %>
-                                        Investimento
-                                    <% }else if (element.centros_custo.dataValues.idTipo ==1) { %>
-                                        Despesa
-                                    <% } %>
-                                    </td>
-                                    <td><%= element.centros_custo.dataValues.nomeCentroCusto %> </td>
-                                    <td><%= element.descricaoTransacao %> </td>
-                                    <td>R$ <%= element.valorTransacao %> </td>
-                                    <td>
-                                        <div class="botoesAcc">
-                                            <button class="btn btn__table btn-primary fa fa-edit mx-1" onclick=<%-'"editar(`/relatorio`,'+element.idTransacao+')"'%>></button>
-                                            <button class="btn btn__table btn-danger fa fa-times mx-1" onclick=<%-'"accDelete(`/relatorio`,'+element.idTransacao+')"'%>></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <% }) %>
-            
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <%- include('./partials/footer.ejs')%>
+                        <% }) %>
     
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+<%- include('./partials/footer.ejs')%>
 </body>
-</html>

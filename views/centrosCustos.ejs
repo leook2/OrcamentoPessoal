@@ -89,7 +89,24 @@
                                 <%})%>
                         </table>                                
                     </div>  
-                    
+                        <tbody id="tabela">
+                            <%dados.forEach(cCusto=>{%>
+                                <tr>
+                                    <td><%=cCusto.tipo.dataValues.nomeTipo%></td>
+                                    <td><%=cCusto.nomeCentroCusto%></td>
+                                    <td>
+                                        <div>
+                                            <% include('../public/js/transacoes.ejs') %>
+                                            <button onclick=<%-'"editar(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
+
+                                            <button onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-danger fa fa-times mx-1"></button>
+                                        </div>
+                                      </td>
+                                </tr>
+                            <%})%>
+                          
+                        </tbody>
+                    </table>
                 </div>
           </div>
          

@@ -35,14 +35,15 @@ function accDelete(url, id){
 }
 
 function editar(url, id){
+  console.log(url, id)
 
   axios.get(`${url}/buscar?id=${id}`)
   .then(resp=>{
 
     if(url === '/centroscustos'){
       carregarDadosCcusto(resp.data)
-    }else if(url === '/relatorio'){
-      carregarDadosRelatorio(resp.data)
+    }else if(url === '/transacao'){
+      carregarDadosTransacoes(resp.data)
     }
 
   })
@@ -75,7 +76,7 @@ function carregarDadosCcusto(cCusto){
     console.log(form)
 }
 
-function carregarDadosRelatorio(relatorio){
+function carregarDadosTransacoes(relatorio){
     exibirModal()
     form.id.value = relatorio.idTransacao
     form.descricao.value = relatorio.descricaoTransacao
@@ -101,7 +102,6 @@ function actionPost(url,dados){
 }
 
 function actionPut(url,dados){
-  console.log(url, dados)
    axios.put(url,dados)        
    .then(res =>{
        if(res.status==200){
@@ -129,10 +129,11 @@ function gravarTransacao(){
 
   if(form.id.value === ''){
     console.log('entro no post')
-    actionPost('http://localhost:8182/relatorio', dados)
+    actionPost('http://localhost:8182/transacao', dados)
   }else if(parseInt(form.id.value) >=1){
+    dados.id = form.id.value
     console.log('entro no put')
-    actionPut('http://localhost:8182/relatorio', dados)
+    actionPut('http://localhost:8182/transacao', dados)
   }
 }
 
