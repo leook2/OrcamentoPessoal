@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <%- include('./partials/head.ejs')%>
-    <!--<link rel="stylesheet" href="../css/centroscustos.css">-->
-    <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
-    <title>Centro Custos</title>
-    <script src="../js/funcoesFront.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+        <!--<link rel="stylesheet" href="../css/centroscustos.css">-->
+        <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
+        <title>Centro Custos</title>
+        <script src="../js/funcoesFront.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
 </head>
+
 <body>
     <%- include('./partials/header.ejs')%>
-    
 
-    <main class="container">
-        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Centro de Custos</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  
-                    <div class="card">
-                        <div class="card-body">
-                            <form id="form">
-                               <div class="row">
-                                    <div class="col-1">
-                                        <label for="idCentroCusto" class="form-label">Id</label>
-                                        <input type="text" id="idCentroCusto" name="idCentroCusto" class="form-control" readonly>
-                                        
-                                    </div>
-                                    <div class="col-8">
-                                        <label for="nome" class="form-label">Centro de Custos</label>
-                                        <input type="text" name="nome" class="form-control">
-                                    </div>
-                                    <div class="col-3">
-                                        <label for="idtipo" class="form-label">Tipo</label>
-                                        <select name="idtipo" id="idtipo" class="form-select">
-                                            <option value="">Tipo</option>
-                                            <option value="1">Despesa</option>
-                                            <option value="2">Receita</option>
-                                            <option value="3">Investimento</option>
-                                        </select>
-                                    </div>
-                               </div>
-                            </form>
-                            <div class="modal-footer">
-                                <button onclick="gravarCcusto()" class="btn btn-success"> <i class="fas fa-save"></i> Gravar </button>
-                            </div>    
+
+        <main class="container">
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Centro de Custos</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>  
-                </div>                
-              </div>
+                        <div class="modal-body">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <form id="form">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <label for="idCentroCusto" class="form-label">Id</label>
+                                                <input type="text" id="idCentroCusto" name="idCentroCusto"
+                                                    class="form-control" readonly>
+
+                                            </div>
+                                            <div class="col-8">
+                                                <label for="nome" class="form-label">Centro de Custos</label>
+                                                <input type="text" name="nome" class="form-control">
+                                            </div>
+                                            <div class="col-3">
+                                                <label for="idtipo" class="form-label">Tipo</label>
+                                                <select name="idtipo" id="idtipo" class="form-select">
+                                                    <option value="">Tipo</option>
+                                                    <option value="1">Despesa</option>
+                                                    <option value="2">Receita</option>
+                                                    <option value="3">Investimento</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button onclick="gravarCcusto()" class="btn btn-success"> <i
+                                                class="fas fa-save"></i> Gravar </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="card">
+            <div class="card">
                 <div class="card-header bg-success">
                     <h3 class="display-4 text-center text-light"><i class="fas fa-chart-bar"></i> Centro de Custos </h3>
                 </div>
                 <div class="card-body">
-                    
                     <table class="table align-baseline table-striped table-hover table-sm text-center">
                         <thead>
                             <tr>
@@ -68,31 +71,40 @@
                                 <th>Centro de Custo</th>
                                 <th>
                                     <span>Ações |</span>
-                                    <button class="btn btn-success mx-1" onclick="exibirModal()"><i class="fas fa-plus"></i></button> 
+                                    <button class="btn btn-success mx-1" onclick="exibirModal()"><i
+                                            class="fas fa-plus"></i></button>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="tabela">
+                        </header>
+                        <tbody>
                             <%dados.forEach(cCusto=>{%>
                                 <tr>
-                                    <td><%=cCusto.tipo.dataValues.nomeTipo%></td>
-                                    <td><%=cCusto.nomeCentroCusto%></td>
+                                    <td>
+                                        <%=cCusto.tipo.dataValues.nomeTipo%>
+                                    </td>
+                                    <td>
+                                        <%=cCusto.nomeCentroCusto%>
+                                    </td>
                                     <td>
                                         <div>
                                             <% include('../public/js/relatorio.ejs') %>
-                                            <button onclick=<%-'"editar(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-primary fa fa-edit mx-1"></button>
+                                                <button
+                                                    onclick=<%-'"editar(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>
+                                                    class="btn btn-primary fa fa-edit mx-1"></button>
 
-                                            <button onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>  class="btn btn-danger fa fa-times mx-1"></button>
+                                                <button
+                                                    onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>
+                                                    class="btn btn-danger fa fa-times mx-1"></button>
                                         </div>
-                                      </td>
+                                    </td>
                                 </tr>
-                            <%})%>
-                          
+                                <%})%>
                         </tbody>
                     </table>
                 </div>
-          </div>
-         
-    </main>
-    <%- include('./partials/footer.ejs')%>
+            </div>
+
+        </main>
+        <%- include('./partials/footer.ejs')%>
 </body>

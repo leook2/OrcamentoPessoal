@@ -12,7 +12,6 @@
     --cor3: rgba(140, 99, 207, 0.656);
 }
 body{
-    background: linear-gradient(var(--cor3), var(--cor2));
     overflow: hidden;
 }
 

@@ -1,42 +1,59 @@
 const query = require('../funcoes/funcoesRotas')
-const usuarios = require("../../models/Usuarios")()
+const Usuarios = require("../../models/Usuarios")()
+const auth = require('../auth')
+const { response } = require('express')
 const session = require('express-session')
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = function (app) {
     app.post('/add', (req, res) => {
-        const dados = { nomeUsuario: req.body.nome, email: req.body.email, hashSenha: req.body.senha }
         var erros = []
-        if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome ==null){
-            erros.push({texto: "Nome invalido"})
+        if (!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null) {
+            erros.push({ texto: "Nome invalido" })
         }
-        if(!req.body.email || typeof req.body.email == undefined || req.body.email ==null){
-            erros.push({texto: "Email invalido"})
+        if (!req.body.email || typeof req.body.email == undefined || req.body.email == null) {
+            erros.push({ texto: "Email invalido" })
         }
 
-        if(!req.body.senha || typeof req.body.senha== undefined || req.body.senha ==null){
-            erros.push({texto: "Senha invalida"})
+        if (!req.body.senha || typeof req.body.senha == undefined || req.body.senha == null) {
+            erros.push({ texto: "Senha invalida" })
         }
-        if(req.body.senha != req.body.senha2){
-            erros.push({texto: "As senhas não correspodem"})
+        if (req.body.senha != req.body.senha2) {
+            erros.push({ texto: "As senhas não correspodem" })
         }
-        if(erros.length > 0){
-           console.log(erros)
-        }else{
-            query.create(dados, usuarios, res)
+        if (erros.length > 0) {
+            res.render('cadastro', { erro: erros })
+        } else {
+            const senha = auth.criptogragarSenha(req.body.senha);//Criptografa a senha do usuario
+            const dados = { nomeUsuario: req.body.nome, email: req.body.email, hashSenha: senha }
+            query.create(dados, Usuarios, res)
+            res.render('login')
         }
     })
 
+    app.get('/add', (req, res) => {
+        res.render('add')
+    })
+
+    //Login
     app.use(session({
         secret: uuidv4(),
         resave: true,
         saveUninitialized: true
     }))
 
-    //Login
     app.post('/login', (req, res) => {
-
-
+        const emailDigitado = req.body.email;
+        const senha = auth.criptogragarSenha(req.body.senha);
+        Usuarios.findOne({where:{ email: emailDigitado }})
+            .then(resp => {
+                console.log(resp)
+                if (senha == resp.hashSenha && emailDigitado == resp.email) {
+                    req.session.user = req.body.email;
+                } else {
+                    console.log('erro')
+                }
+            })
     })
     app.get('/login', (req, res) => {
         res.render('login')
