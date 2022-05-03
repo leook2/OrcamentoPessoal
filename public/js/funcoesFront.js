@@ -166,8 +166,6 @@ function actionPut(url, dados) {
 }
 
 
-
-
 function gravarTransacao() {
   const form = document.getElementById('form')
   const dados = {
@@ -179,7 +177,7 @@ function gravarTransacao() {
   if (form.id.value === '') {
     console.log('entro no post')
 
-    actionPost('http://localhost:8182/relatorio', dados)
+    actionPost('http://localhost:8182/transacao', dados)
   } else if (parseInt(form.id.value) >= 1) {
 
     actionPost('http://localhost:8182/transacao', dados)

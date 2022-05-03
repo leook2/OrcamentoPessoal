@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <%- include('./partials/head.ejs')%>
-    <link rel="stylesheet" href="../css/relatorio.css">
-    <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
-    <script src="../js/funcoesFront.js" defer></script>
-    <script src="../js/transacaoFront.js" defer></script>
-    <title>Transação</title>
+        <link rel="stylesheet" href="../css/relatorio.css">
+        <script src="https://kit.fontawesome.com/c9e4967131.js" crossorigin="anonymous"></script>
+        <script src="../js/funcoesFront.js" defer></script>
+        <script src="../js/transacaoFront.js" defer></script>
+        <title>Transação</title>
 </head>
+
 <body>
 
     <header>
         <div class="btn__responsive-relatorio" id="headerRelatorio"></div>
-        <div class="relatorio-header" >
-            <nav class="cabecalho-principal-nav-relatorio " id="headerNav" >
+        <div class="relatorio-header">
+            <nav class="cabecalho-principal-nav-relatorio " id="headerNav">
                 <ul class="cabecalho-principal-nav-relatorio-itens">
                     <li><a class="cabecalho-principal-nav-relatorio-itens-a  home" href="/home">Home</a></li>
                     <li><a class="cabecalho-principal-nav-relatorio-itens-a" href="/usuario">Usuario</a></li>
@@ -21,8 +23,7 @@
                     </li>
                     <li><a class="cabecalho-principal-nav-relatorio-itens-a" href="/relatorio">Relatorio</a>
                     </li>
-                    <li><a class="cabecalho-principal-nav-relatorio-itens-a last"
-                            href="/transacao">Transação</a></li>
+                    <li><a class="cabecalho-principal-nav-relatorio-itens-a last" href="/transacao">Transação</a></li>
                 </ul>
                 <div class="cabecalho-principal-nav-btn btn-accout__relatorio">
                     <button class="cabecalho-principal-nav-sign-in btn-accout__sign-in">Sign in</button>
@@ -36,10 +37,12 @@
         <!--==============Modal====================-->
         <section class=" section-modal__intro">
             <nav class="container">
-                <button class="btn btn-primary section-modal__filtrar" onclick="exibirModal()" data-bs-toggle="modal" data-bs-target="#reg-modal">
+                <button class="btn btn-primary section-modal__filtrar" onclick="exibirModal()" data-bs-toggle="modal"
+                    data-bs-target="#reg-modal">
                     Inserir
                 </button>
-                <button class="section-modal__btn-home"><a href="/home">Voltar para a Home</a><i class="fa fa-solid fa-house"></i></button>
+                <button class="section-modal__btn-home"><a href="/home">Voltar para a Home</a><i
+                        class="fa fa-solid fa-house"></i></button>
             </nav>
 
             <!--==============Corpo do Modal====================-->
@@ -60,9 +63,11 @@
                                     <div class="col-md-11">
                                         <label for="tipo" class="form-label">Centro de custo</label>
                                         <select name="tipo" class="w-100 form-select" id="tipo" data-live-search="true">
-                                            <% dados.forEach(element => { %>
-                                                <option value="<%= element.centros_custo.dataValues.idCentroCusto %> "><%= element.centros_custo.dataValues.nomeCentroCusto %></option>
-                                            <% }) %>
+                                            <% dados.forEach(element=> { %>
+                                                <option value="<%= element.centros_custo.dataValues.idCentroCusto %> ">
+                                                    <%= element.centros_custo.dataValues.nomeCentroCusto %>
+                                                </option>
+                                                <% }) %>
                                         </select>
                                     </div>
                                 </div>
@@ -73,7 +78,7 @@
                                         <input type="text" name="descricao" id="descricao" class="form-control">
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="valor" class="form-label">Valor</label>
@@ -83,7 +88,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" onclick="gravarTransacao()" id="gravar" >Gravar</button>
+                            <button class="btn btn-primary" onclick="gravarTransacao()" id="gravar">Gravar</button>
                         </div>
                     </div>
                 </div>
@@ -95,6 +100,9 @@
         <div class="tabela-relatorio__section">
             <section>
                 <div class="container">
+                    <div class="card-header bg-success">
+                        <h4 class="display-4 text-center text-light"><i class="fas fa-chart-bar"></i>Transações</h4>
+                    </div>
                     <table class="table align-baseline table-striped table-hover table-sm text-center">
                         <thead>
                             <tr>
@@ -103,44 +111,58 @@
                                 <th>Descrição</th>
                                 <th>Valor</th>
                                 <th>
-                                <span>Ações</span>
+                                    <span>Ações</span>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="tbody" class="">
-                            <% dados.forEach(element => { %>
-                                <tr>
-                                    <td> <% if (element.centros_custo.dataValues.idTipo ==2) { %>
-                                        Receita
-                                    <% } else if (element.centros_custo.dataValues.idTipo ==3) { %>
-                                        Investimento
-                                    <% }else if (element.centros_custo.dataValues.idTipo ==1) { %>
-                                        Despesa
-                                    <% } %>
-                                    </td>
-                                    <td><%= element.centros_custo.dataValues.nomeCentroCusto %> </td>
-                                    <td><%= element.descricaoTransacao %> </td>
-                                    <td>R$ <%= element.valorTransacao %> </td>
-                                    <td>
-                                        <div class="botoesAcc">
-                                            <button class="btn btn__table btn-primary fa fa-edit mx-1" onclick=<%-'"editar(`/transacao`,'+element.idTransacao+')"'%>></button>
-                                            <button class="btn btn__table btn-danger fa fa-times mx-1" onclick=<%-'"accDelete(`/transacao`,'+element.idTransacao+')"'%>></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <% }) %>
-            
-                        </tbody>
                     </table>
+                    <div class="tbscroll">
+                        <table
+                            class="table table-striped align-baseline table-striped table-hover table-sm text-center">
+                            <tbody id="tbody" class="">
+                                <% dados.forEach(element=> { %>
+                                    <tr>
+                                        <td>
+                                            <% if (element.centros_custo.dataValues.idTipo==2) { %>
+                                                Receita
+                                                <% } else if (element.centros_custo.dataValues.idTipo==3) { %>
+                                                    Investimento
+                                                    <% }else if (element.centros_custo.dataValues.idTipo==1) { %>
+                                                        Despesa
+                                                        <% } %>
+                                        </td>
+                                        <td>
+                                            <%= element.centros_custo.dataValues.nomeCentroCusto %>
+                                        </td>
+                                        <td>
+                                            <%= element.descricaoTransacao %>
+                                        </td>
+                                        <td>R$ <%= element.valorTransacao %>
+                                        </td>
+                                        <td>
+                                            <div class="botoesAcc">
+                                                <button class="btn btn__table btn-primary fa fa-edit mx-1"
+                                                    onclick=<%-'"editar(`/transacao`,'+element.idTransacao+')"'%>></button>
+                                                <button class="btn btn__table btn-danger fa fa-times mx-1"
+                                                    onclick=<%-'"accDelete(`/transacao`,'+element.idTransacao+')"'%>></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
             <section class="container">
-                
+
             </section>
         </div>
     </main>
 
     <%- include('./partials/footer.ejs')%>
-    
+
 </body>
+
 </html>
