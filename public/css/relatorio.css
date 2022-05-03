@@ -5,7 +5,7 @@ body{
     width: 20rem;
     position: absolute;
     top: 0;
-    height: 35rem;
+    height: 29rem;
     width: 0;
     background-color: rgb(155, 212, 158);
     border-radius: 5px;
@@ -16,18 +16,21 @@ body{
     overflow-x: hidden;
 }
 .cabecalho-principal-nav-relatorio-itens{
-    padding: .5rem;
-    margin: 1rem;
-    margin-top: 2.5rem;
+    margin-top: 6.5rem;
 }
 .cabecalho-principal-nav-relatorio-itens-a{
     display: block;
-    margin-top: 2.5rem;
-    padding: .5rem;
+    padding: 1rem 1.5rem;
     color: rgb(19, 18, 18);
+    transition: .4s linear;
+}
+.cabecalho-principal-nav-relatorio-itens-a:hover{
+    border-bottom: 2px #fff solid;
+    color: #fff;
 }
 .last::after{
     content: '';
+    margin-top: 2rem;
     display: inline;
     position: absolute;
     width: 100%;
@@ -36,15 +39,27 @@ body{
     left: -2rem;
 }
 .btn-accout__relatorio{
+    display: flex;
     text-align: center;
-    margin: 1.5rem;
+    margin: 1rem ;
 }
 .btn-accout__sign-in{
     color: rgb(19, 18, 18);
+    width: 8.4rem;
+    transition: .4s;
+}
+.btn-accout__sign-in:hover{
+    color: #fff;
 }
 .btn-accout__sign-up{
     background-color: rgba(255, 255, 255, 0.137);
     color: rgb(255, 255, 255);
+    width: 6.4rem;
+    transition: .5s ease;
+}
+.btn-accout__sign-up:hover{
+    color: black;
+    background-color: rgba(255, 255, 255, 0.432);
 }
 .section-modal__intro{
     background-color: rgb(222, 221, 236);
@@ -63,7 +78,7 @@ body{
     border: 2px rgb(100 106 101 / 15%) solid;
     box-shadow: 6px 3px 3px #8b858514;
     border-radius: 10px;
-    margin-top: 1.5rem;
+    margin-top: 8.5rem;
 }
 .relatorio-saida-card{
     width: 12rem;
@@ -88,6 +103,9 @@ body{
     border-radius: 10px;
     width: 3rem;
 }
+#headerNav{
+    z-index: 5;
+}
 
 
 /*==================responsive-items==================*/
@@ -108,7 +126,17 @@ body{
     border-top: 3px currentColor solid;
     margin-top: 6px;
 }
+.btn__responsive-relatorio:hover{
+    cursor: pointer;
+}
 #headerNav.active{
     width: 20rem;
     visibility: visible;
+    z-index: 5;
+}
+
+@media screen and (max-width: 841px) {
+    .btn-accout__relatorio{
+        margin: 3rem;
+    }
 }

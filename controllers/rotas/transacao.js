@@ -1,8 +1,9 @@
-const CentrosCustos = require('../../models/CentrosCustos')()
-const Tipos         = require('../../models/Tipos')()
-const Transacoes    = require('../../models/Transacoes')()
+const CentrosCustos  = require('../../models/CentrosCustos')()
+const Tipos          = require('../../models/Tipos')()
+const Transacoes     = require('../../models/Transacoes')()
 const { autenticar } = require('../auth')
-const query         = require('../funcoes/funcoesRotas')
+const query          = require('../funcoes/funcoesRotas')
+const Sequelize      = require('sequelize')
 
 module.exports = function(app){
     

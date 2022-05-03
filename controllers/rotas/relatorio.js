@@ -40,6 +40,7 @@ module.exports = function(app){
             .then(tipos =>{            
               res.render('relatorio',{centrosCustos:cCusto, tipos:tipos})
             })
+            
           })
       });
 }
