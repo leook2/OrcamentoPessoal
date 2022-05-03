@@ -76,7 +76,8 @@ module.exports = function (app) {
     })
 
     app.get("/logout", (req, res)=>{
-        req.session.user=undefined;
+        req.session.usuario=undefined;
+        req.session.idUsuario=undefined;
         res.redirect("/home")
     })
 
