@@ -7,5 +7,11 @@ function criptogragarSenha(senha) {
 }
 exports.criptogragarSenha = criptogragarSenha
 
-
-
+function autenticar(req, res, next){
+    if (req.session.usuario!=undefined){
+        next()
+    } else{
+        res.redirect('/login')
+    }
+}
+exports.autenticar=autenticar
