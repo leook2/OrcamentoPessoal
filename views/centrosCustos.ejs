@@ -12,17 +12,7 @@
 
 <body>
     <%- include('./partials/header.ejs')%>
-<<<<<<< HEAD
 
-
-        <main class="container">
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Centro de Custos</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-=======
  
     <main class="container">
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,34 +107,7 @@
                                 </th>
                             </tr>
                         </thead>
-<<<<<<< HEAD
-                        </header>
-                        <tbody>
-                            <%dados.forEach(cCusto=>{%>
-                                <tr>
-                                    <td>
-                                        <%=cCusto.tipo.dataValues.nomeTipo%>
-                                    </td>
-                                    <td>
-                                        <%=cCusto.nomeCentroCusto%>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <% include('../public/js/relatorio.ejs') %>
-                                                <button
-                                                    onclick=<%-'"editar(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>
-                                                    class="btn btn-primary fa fa-edit mx-1"></button>
 
-                                                <button
-                                                    onclick=<%-'"accDelete(`/centroscustos`,'+cCusto.idCentroCusto+')"'%>
-                                                    class="btn btn-danger fa fa-times mx-1"></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <%})%>
-                        </tbody>
-                    </table>
-=======
                         </table>
                         <div class="tbscroll">
                         <table class="table table-striped align-baseline table-striped table-hover table-sm text-center">
@@ -165,7 +128,7 @@
                         </table>                                
                     </div>  
                         
->>>>>>> 8816c4df89173f30f4fcc4c42e5059d1922812cd
+
                 </div>
             </div>
 

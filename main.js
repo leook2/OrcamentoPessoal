@@ -4,7 +4,7 @@ const connection = require('./controllers/database');
 const bordyParser = require('body-parser');
 const { application } = require('express');
 const consign = require('consign');
-
+const session = require('express-session')
 var app = express();
 app.use(cors());
 
@@ -22,6 +22,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bordyParser.urlencoded({ extended: true }));
 app.use(bordyParser.json());
+let tempo=2*(60*1000*60)
+app.use(session({
+    secret: "sldfjlasjk", cookie:{maxAge: tempo}
+}))
 
 consign()
     .include('./models')

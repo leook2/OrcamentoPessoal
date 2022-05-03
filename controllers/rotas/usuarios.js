@@ -36,11 +36,20 @@ module.exports = function (app) {
     })
 
     //Login
+    /*
     app.use(session({
         secret: uuidv4(),
         resave: true,
         saveUninitialized: true
     }))
+
+    
+    let tempo=2*(60*1000*60)
+    app.use(session({
+        secret: "sldfjlasjk", cookie:{maxAge: tempo}
+    }))
+
+    */
 
     app.post('/login', (req, res) => {
         const usuario = req.body.email;
@@ -49,10 +58,10 @@ module.exports = function (app) {
             .then(resp => {
                 console.log(resp)
                 if (senha == resp.hashSenha && usuario == resp.email) {
+                    req.session.idUsuario=resp.idUsuario;
                     req.session.usuario = resp.email;
                     res.redirect('bemvindo')
                 } else {
-                    alert('usuario invalido')
                     console.log('erro')
                 }
             })
@@ -65,6 +74,13 @@ module.exports = function (app) {
             res.send('usuario negado')
         }
     })
+
+    app.get("/logout", (req, res)=>{
+        req.session.user=undefined;
+        res.redirect("/home")
+    })
+
+
     
     app.get('/login', (req, res) => {
         res.render('login')
