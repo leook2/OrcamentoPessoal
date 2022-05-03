@@ -140,7 +140,7 @@ function autUsuario() {
   axios.post('http://localhost:8182/login', usuario)
     .then(res => {
       if (res.status == 200) {
-        alert("Login efetuado!")
+        window.location.href='/bemvindo'
       } else {
         console.log(res.status)
       }

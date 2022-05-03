@@ -44,9 +44,9 @@ module.exports = function (app) {
     }))
 
     
-    let tempo=2*(60*1000*60)
+    let tempo=1*(60*1000*60)
     app.use(session({
-        secret: "sldfjlasjk", cookie:{maxAge: tempo}
+        secret: "sfhdfhhngldfjlasjk", cookie:{maxAge: tempo}
     }))
 
     */
@@ -60,7 +60,7 @@ module.exports = function (app) {
                 if (senha == resp.hashSenha && usuario == resp.email) {
                     req.session.idUsuario=resp.idUsuario;
                     req.session.usuario = resp.email;
-                    res.redirect('bemvindo')
+                    res.json(resp)
                 } else {
                     console.log('erro')
                 }
@@ -69,7 +69,7 @@ module.exports = function (app) {
 
     app.get('/bemvindo', (req, res)=>{
         if(req.session.usuario){
-            res.render('bemvindo', {usuario:req.session.usuario})
+            res.render('bemvindo')
         }else{
             res.send('usuario negado')
         }

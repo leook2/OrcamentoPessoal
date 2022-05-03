@@ -2,16 +2,16 @@ const Tipos        = require('../../models/Tipos')()
 const CentrosCustos = require("../../models/CentrosCustos")()
 const query         = require('../funcoes/funcoesRotas')
 const Transacoes    = require('../../models/Transacoes')()
-
+const {autenticar}=require('../auth')
 
 module.exports = function(app){
     
-    app.post('/centroscustos',  (req, res)=>{
+    app.post('/centroscustos', autenticar,  (req, res)=>{
         let dados={idTipo:req.body.idtipo,nomeCentroCusto:req.body.nome}
         query.create(dados, CentrosCustos, res)
          
     })
-    app.get('/centroscustos', (req, res)=>{
+    app.get('/centroscustos', autenticar, (req, res)=>{
         query.findAll(res, 'centrosCustos', CentrosCustos, 'idCentroCusto', 'DESC', Tipos)
     });
 
