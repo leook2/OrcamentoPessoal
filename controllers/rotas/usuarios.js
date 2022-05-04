@@ -36,7 +36,6 @@ module.exports = function (app) {
         const senha = auth.criptogragarSenha(req.body.senha);
         Usuarios.findOne({ where: { email: usuario } })
             .then(resp => {
-                console.log(resp)
                 if (senha == resp.hashSenha && usuario == resp.email) {
                     req.session.idUsuario = resp.idUsuario;
                     req.session.usuario = resp.email;
