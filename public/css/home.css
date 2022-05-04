@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300&display=swap');
 :root{
     --cor1: rgb(36, 130, 57);
     --cor2: rgb(78, 207, 106);
     --cor3: rgb(141, 99, 207);
     --cor4: rgb(207, 140, 58);
 
-    --font-text: 'Roboto', sans-serif;
-    --font-titulo: 'Poppins', sans-serif;
+    --font-text: 'Sora', sans-serif;
+    --font-titulo:  'Bebas Neue', cursive;
+
+
 
     --font-medium: 500px;
     --font-semi-bold: 600px;
@@ -30,8 +33,9 @@
     --mb-3-0: 3em;
 }
 
-body{
-    background-color: rgb(222, 221, 236);
+.section-intro{
+    position: relative;
+    top: -100px;
 }
 .section-intro-img{
     width: 500px;
@@ -49,9 +53,11 @@ body{
 }
 .section-intro-h2{
     font-family: var(--font-titulo);
+    font-size: 80px;
 }
 .section-intro-p{
     font-family: var(--font-text);
+    font-size: var(--smaller-size);
 }
 .section-intro{
     display: flex;
@@ -68,7 +74,7 @@ body{
 .section-cards-global{
     display: flex;
     margin-top: 4em;
-    background-color: rgb(222, 221, 236);
+    background-color: white;
     border-radius: 12px;
     height: 35em;
     flex-wrap: wrap;
@@ -91,7 +97,7 @@ body{
 }
 .section-cards-global-h3{
     font-family: var(--font-titulo);
-    font-size: var(--h3-font-size);
+    font-size: 35px;
     color: var(--cor3);
 }
 .section-cards-global-p{
@@ -241,5 +247,12 @@ body{
     }
     .section-explicativa-intro{
         width: 24rem;
+    }
+}
+
+@media(max-width:500px){
+    .section-cards-global{
+        position: relative;
+        right: 40px;
     }
 }
