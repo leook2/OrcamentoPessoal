@@ -14,12 +14,12 @@
         <section class="login col-lg-7">
             <div class="container">
                 <div class="row g-0">
-                    <div class="col-lg-7">
+                    <div class="imagem col-lg-7">
                         <img src="../img/cadastro.png" class="img-fluid" width="100%" alt="cadastro">
                     </div>
-                    <div class="col-lg-5 text-center py-2">
+                    <div id="form" class="col-lg-5 text-center py-2">
                         <h1 class="pt-5 mb-3">Cadastro</h1>
-                        <form action="/add" method="post">
+                        <form action="/cadastro" method="post">
                             <div class="form-row py-4">
                                 <div class="offset-1 col-lg-10">
                                     <input name="nome" type="text" class="input px-3" placeholder="Nome">
@@ -43,12 +43,8 @@
                                     <input name="senha2" type="password" class="input px-3" placeholder="Repita a senha ">
                                 </div>
                             </div>
-
-                            <div class="form-row py-4">
                                 <div class="offset-1 col-lg-10">
-                                <button type="submit" class="btn1">Cadastrar</button>
-                                </div>
-                            </div>
+                                <button onclick="postCadastro()" class="btn1">Cadastrar</button>
                             <br><br><br>
                             <p style=" font-family: 'Poppins', sans-serif; color: rgb(98, 97, 97);">Já tem uma conta? <a
                                     style=" font-family: 'Poppins', sans-serif; color: black;font-weight: bold; text-decoration: underline"

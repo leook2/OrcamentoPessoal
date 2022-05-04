@@ -11,11 +11,13 @@
     --cor2: rgba(78, 207, 106, 0.548);
     --cor3: rgba(140, 99, 207, 0.656);
 }
-body{
+
+body {
+    background-color: rgb(222, 221, 236);
     overflow: hidden;
 }
 
-#voltar{
+#voltar {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: white;
@@ -35,6 +37,8 @@ main {
     align-items: center;
 }
 
+
+
 .login {
     position: relative;
 }
@@ -49,6 +53,7 @@ main {
 .login img {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+
 }
 
 .row {
@@ -83,4 +88,13 @@ main {
 
 .btn1:hover {
     background-color: black;
+}
+
+@media(max-width:1325px){
+   .imagem{
+       display: none;
+   }
+   #form{
+      margin: auto;
+   }
 }

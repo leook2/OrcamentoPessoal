@@ -140,6 +140,7 @@ function autUsuario() {
   axios.post('http://localhost:8182/login', usuario)
     .then(res => {
       if (res.status == 200) {
+        res
         window.location.href='/bemvindo'
       } else {
         console.log(res.status)
@@ -149,6 +150,23 @@ function autUsuario() {
       console.log(erro)
     });
 }
+
+function postCadastro() {
+  var form = document.getElementById('form')
+  var usuario = {nome:form.nome.value, email: form.email.value, senha: form.senha.value, senha2:form.senha2.value }
+  axios.post('http://localhost:8182/cadastro', usuario)
+    .then(res => {
+      if (res.status == 200) {
+        alert('Cadastro efetuado com sucesso!')
+      } else {
+        console.log(res.status)
+      }
+    })
+    .catch(erro => {
+      console.log(erro)
+    });
+}
+
 function actionPut(url, dados) {
   axios.put(url, dados)
     .then(res => {
@@ -164,7 +182,6 @@ function actionPut(url, dados) {
     });
 
 }
-
 
 function gravarTransacao() {
   const form = document.getElementById('form')
