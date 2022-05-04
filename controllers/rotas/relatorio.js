@@ -7,16 +7,7 @@ const {autenticar}=require('../auth')
 
 module.exports = function(app){
 
-    app.get('/relatorio',autenticar, (req, res)=>{
-        query.findAll(res, 'relatorio', Transacoes, 'idTransacao', 'DESC', CentrosCustos)
-    })
-
-    app.get("/relatorio/teste", (req, res) => {
-        /*Transacoes.sum('valorTransacao', {where: {idCentroCusto:1}})
-          .then(resp => {
-            console.log(resp)
-            res.json(resp)
-          })*/
+    app.get("/relatorio",autenticar, (req, res) => {
 
           Transacoes.findAll({
             attributes:['idCentroCusto',
@@ -25,20 +16,23 @@ module.exports = function(app){
           include:[{model:CentrosCustos, attributes:{exclude:['idCentroCusto', 'idTipo']},
                   include:[{model:Tipos}]}],
           group:'idCentroCusto',
-          //raw:true
+          raw:true
           })
           .then(cCusto=>{
             Transacoes.findAll({
               attributes:['idCentroCusto',
               [Sequelize.fn('sum', Sequelize.col('valorTransacao')), 'SomaValor']
             ],
-            include:[{model:CentrosCustos, attributes:{exclude:['idCentroCusto', 'nomeCentroCusto', 'idTipo']},
+            include:[{model:CentrosCustos, attributes:{exclude:['idCentroCusto']},
                     include:[{model:Tipos}]}],
             group:'nomeTipo',
-            //raw:true
+            raw:true
             })
-            .then(tipos =>{            
-              res.render('relatorio',{centrosCustos:cCusto, tipos:tipos})
+            .then(tipos =>{ 
+              
+              let resp = {centrosCustos: cCusto, tipos: tipos}
+
+              res.render('relatorio',{dados:resp})
             })
             
           })

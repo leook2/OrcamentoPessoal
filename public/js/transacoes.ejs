@@ -1,16 +1,15 @@
 <%
-parseFloatt = function(vetorReceita, vetorDespesa = '') {
-    let vetor1 = 0
-    let vetor2 = 0
-
-    for(let i=0; i<vetorReceita.length; i++){
-        vetor1 =vetor1 + parseFloat(vetorReceita[i])
+parseFloatt = function(valor, valor2 = '', valor3 = '') {
+    console.log('vetores:'+valor,valor2, valor3)
+    var sub = parseFloat(valor2 + valor3)
+    if (sub) {
+        let total = valor-sub
+        dinheiro = total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+        return dinheiro
     }
-    for(let i=0; i<vetorDespesa.length; i++){
-        vetor2 = vetor2 + parseFloat(vetorDespesa[i])
-    }
-    const result = vetor1 - vetor2
-    var dinheiro = result.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    var dinheiro = valor
+    
+    dinheiro = dinheiro.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
     return dinheiro
 }
 

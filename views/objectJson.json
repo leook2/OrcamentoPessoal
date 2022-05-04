@@ -1,0 +1,75 @@
+{
+    "dados": {
+        "centrosCustos": [
+            {
+                "idCentroCusto": 1,
+                "SomaValor": 3967,
+                "centros_custo.nomeCentroCusto": "salario",
+                "centros_custo.tipo.idTipo": 2,
+                "centros_custo.tipo.nomeTipo": "receita",
+                "centros_custo.tipo.operacao": "c"
+            },
+            {
+                "idCentroCusto": 2,
+                "SomaValor": 400,
+                "centros_custo.nomeCentroCusto": "jogo de azar",
+                "centros_custo.tipo.idTipo": 3,
+                "centros_custo.tipo.nomeTipo": "investimento",
+                "centros_custo.tipo.operacao": "d"
+            },
+            {
+                "idCentroCusto": 3,
+                "SomaValor": 10,
+                "centros_custo.nomeCentroCusto": "stream",
+                "centros_custo.tipo.idTipo": 3,
+                "centros_custo.tipo.nomeTipo": "investimento",
+                "centros_custo.tipo.operacao": "d"
+            },
+            {
+                "idCentroCusto": 4,
+                "SomaValor": 700,
+                "centros_custo.nomeCentroCusto": "pet Shop",
+                "centros_custo.tipo.idTipo": 2,
+                "centros_custo.tipo.nomeTipo": "receita",
+                "centros_custo.tipo.operacao": "c"
+            },
+            {
+                "idCentroCusto": 7,
+                "SomaValor": 532,
+                "centros_custo.nomeCentroCusto": "supermercado",
+                "centros_custo.tipo.idTipo": 1,
+                "centros_custo.tipo.nomeTipo": "despesa",
+                "centros_custo.tipo.operacao": "d"
+            }
+        ],
+        "tipos": [
+            {
+                "idCentroCusto": 1,
+                "SomaValor": 4667,
+                "centros_custo.nomeCentroCusto": "salario",
+                "centros_custo.idTipo": 2,
+                "centros_custo.tipo.idTipo": 2,
+                "centros_custo.tipo.nomeTipo": "receita",
+                "centros_custo.tipo.operacao": "c"
+            },
+            {
+                "idCentroCusto": 2,
+                "SomaValor": 410,
+                "centros_custo.nomeCentroCusto": "jogo de azar",
+                "centros_custo.idTipo": 3,
+                "centros_custo.tipo.idTipo": 3,
+                "centros_custo.tipo.nomeTipo": "investimento",
+                "centros_custo.tipo.operacao": "d"
+            },
+            {
+                "idCentroCusto": 7,
+                "SomaValor": 532,
+                "centros_custo.nomeCentroCusto": "supermercado",
+                "centros_custo.idTipo": 1,
+                "centros_custo.tipo.idTipo": 1,
+                "centros_custo.tipo.nomeTipo": "despesa",
+                "centros_custo.tipo.operacao": "d"
+            }
+        ]
+    }
+}

@@ -72,17 +72,12 @@ body{
     color: rgb(19, 18, 18);
 }
 .relatorio-saida{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border: 2px rgb(100 106 101 / 15%) solid;
-    box-shadow: 6px 3px 3px #8b858514;
-    border-radius: 10px;
     margin-top: 8.5rem;
 }
 .relatorio-saida-card{
-    width: 12rem;
     color: rgb(19, 18, 18);
+    margin: 2rem;
+    padding: 1rem;
 }
 .relatorio-saida-card:not(:first-child){
     margin-left: 3rem;
@@ -106,7 +101,26 @@ body{
 #headerNav{
     z-index: 5;
 }
-
+.img__card{
+    width: 300px;
+}
+.section-cards{
+    margin:3rem 0;
+}
+.section-cards__modify{
+    margin: 2rem;
+    border-radius: 15px;
+    width: 400px;
+}
+.img__card{
+    border-radius: 15px;
+    margin: auto auto;
+    padding: .5rem;
+}
+.section-cards__titlle{
+    text-decoration: underline;
+    text-align: center;
+}
 
 /*==================responsive-items==================*/
 
@@ -138,5 +152,10 @@ body{
 @media screen and (max-width: 841px) {
     .btn-accout__relatorio{
         margin: 3rem;
+    }
+}
+@media screen and (max-width: 992px) {
+    .cardd:not(:last-child){
+        margin-left: 2rem;
     }
 }

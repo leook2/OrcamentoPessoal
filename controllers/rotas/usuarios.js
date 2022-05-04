@@ -35,22 +35,6 @@ module.exports = function (app) {
         res.render('add')
     })
 
-    //Login
-    /*
-    app.use(session({
-        secret: uuidv4(),
-        resave: true,
-        saveUninitialized: true
-    }))
-
-    
-    let tempo=1*(60*1000*60)
-    app.use(session({
-        secret: "sfhdfhhngldfjlasjk", cookie:{maxAge: tempo}
-    }))
-
-    */
-
     app.post('/login', (req, res) => {
         const usuario = req.body.email;
         const senha = auth.criptogragarSenha(req.body.senha);

@@ -31,109 +31,84 @@
     </header>
 
 <main>
+    
     <div class="tabela-relatorio__section">
         <section class="relatorio-saida container">
-            <div class="relatorio-saida-card relatorio__receita">
-                <div class="relatorio-saida-receita-resultado">
-                    <div class="saida saida__receita"><% include('../public/js/transacoes.ejs') %>
-                        <% var result = [] %>
-                        <% dados.forEach(element => { %>
-                      <% if (element.centros_custo.dataValues.idTipo ==2) { %>
-                        <% result.push(element.valorTransacao) %>
-                      <% } %>
-                    <% }) %>
-                    <h3>
-                        <%= parseFloatt(result) %>
-                     </h3></div>
-                </div>
-                <h2 class="relatorio-h2 relatorio-h2__receita">Receita</h2>
-            </div>
-            <div class="relatorio-saida-card relatorio__despesa">
-                <div class="relatorio-saida-despesa-resultado">
-                    <div class="saida saida__despesa"><% var result = [] %>
-                        <% dados.forEach(element => { %>
-                      <% if (element.centros_custo.dataValues.idTipo ==1) { %>
-                        <% result.push(element.valorTransacao) %>
-                      <% } %>
-                    <% }) %>
-                    <h3>
-                        <%= parseFloatt(result) %>
-                     </h3></div>
-                </div>
-                <h2 class="relatorio-h2 relatorio-h2__despesa">Despesa</h2>
-            </div>
-            <div class="relatorio-saida-card relatorio__investimento">
-                <div class="relatorio-saida-investimento-resultado">
-                    <div class="saida saida__investimento"><% var result = [] %>
-                        <% dados.forEach(element => { %>
-                      <% if (element.centros_custo.dataValues.idTipo ==3) { %>
-                        <% result.push(element.valorTransacao) %>
-                      <% } %>
-                    <% }) %>
-                    <h3>
-                        <%= parseFloatt(result) %>
-                     </h3></div>
-                </div>
-                <h2 class="relatorio-h2 relatorio-h2__investimento">Investimento</h2>
-            </div>
-            <div class="relatorio-saida-card relatorio__total">
-                <div class="relatorio-saida-total-resultado">
-                    <div class="saida saida__total" ><% var receita = [] %>
-                        <% var saida = [] %>
-                        <% dados.forEach(element => { %>
-                      <% if (element.centros_custo.dataValues.idTipo ===2) { %>
-                        <% receita.push(element.valorTransacao) %>
-                      <% } %>
-                      <% if (element.centros_custo.dataValues.idTipo ===1) { %>
-                        <% saida.push(element.valorTransacao) %>
-                      <% } %>
-                    <% }) %>
-                    <h3>
-                        <%= parseFloatt(receita, saida) %>
-                     </h3></div>
-                </div>
-                <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
-            </div>
-        </section>
-        <section>
-            <div class="container">
+            <div class="row">
+                <div class="col-md-3 cardd">
+                    <div class="relatorio-saida-card relatorio__receita">
+                        <div class="relatorio-saida-receita-resultado">
+                            <div class="saida saida__receita"><% include('../public/js/transacoes.ejs') %>
+                                <h3><%= parseFloatt(dados.tipos[0].SomaValor) %> </h3>
+                            </div>
+                        </div>
                 
-                <table class="table align-baseline table-striped table-hover table-sm text-center">
-                    <thead>
-                        <tr>
-                            <th>Tipo</th>
-                            <th>Nome</th>
-                            <th>Descrição</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        <% dados.forEach(element => { %>
-                            <tr>
-                                <td> <% if (element.centros_custo.dataValues.idTipo ==2) { %>
-                                    Receita
-                                <% } else if (element.centros_custo.dataValues.idTipo ==3) { %>
-                                    Investimento
-                                <% }else if (element.centros_custo.dataValues.idTipo ==1) { %>
-                                    Despesa
-                                <% } %>
-                                </td>
-                                <td><%= element.centros_custo.dataValues.nomeCentroCusto %> </td>
-                                <td><%= element.descricaoTransacao %> </td>
-                                <td>R$ <%= element.valorTransacao %> </td>
-                            </tr>
-                        <% }) %>
-    
-                    </tbody>
-                </table>
+                        <h2 class="relatorio-h2 relatorio-h2__receita"><%= dados.tipos[0]["centros_custo.tipo.nomeTipo"] %></h2>
+                    </div>
+                </div>
+                <div class="col-md-3 cardd">
+                    <div class="relatorio-saida-card relatorio__despesa">
+                        <div class="relatorio-saida-despesa-resultado">
+                            <div class="saida saida__despesa">
+                                <h3><%= parseFloatt(dados.tipos[2].SomaValor) %> </h3>
+                             </h3>
+                            </div>
+                        </div>
+                        <h2 class="relatorio-h2 relatorio-h2__despesa"><%= dados.tipos[2]["centros_custo.tipo.nomeTipo"] %></h2>
+                    </div>
+                </div>
+                <div class="col-md-3 cardd">
+                    <div class="relatorio-saida-card relatorio__investimento">
+                        <div class="relatorio-saida-investimento-resultado">
+                            <div class="saida saida__investimento">
+                                <h3><%= parseFloatt(dados.tipos[1].SomaValor) %> </h3>
+                            </div>
+                        </div>
+                
+                        <h2 class="relatorio-h2 relatorio-h2__investimento"><%= dados.tipos[1]["centros_custo.tipo.nomeTipo"] %></h2>
+                    </div>
+                </div>
+                <div class="col-md-3 cardd">
+                    <div class="relatorio-saida-card relatorio__total">
+                        <div class="relatorio-saida-total-resultado">
+                            <div class="saida saida__total" >
+                                <h3><%= parseFloatt(dados.tipos[0].SomaValor, dados.tipos[1].SomaValor, dados.tipos[2].SomaValor)%></h3>
+                            </div>
+                        </div>
+                        <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="container cards">
-            <div class="card-relatorio">
-                <h3 class="card-relatorio__h3"></h3>
-                <div class="card-relatorio__saida"></div>
-            </div>
+        <section class="container ">
+        <div class="row section-cards">
+            <% for( let x = 0; x < dados.centrosCustos.length; x++ ) { %>
+            
+                <div class="col-4 section-cards__modify">
+                    <div class="card">
+                        <% if (dados.centrosCustos[x]["centros_custo.tipo.idTipo"]==3) { %>
+                            <img class="img__card" src="../img/investimento.jpg" alt="imagem de investimento colocando moeda dentro do porquinho de moedas ">
+                        <% }else if(dados.centrosCustos[x]["centros_custo.tipo.idTipo"]==1) {%>
+                            <img class="img__card" src="../img/despesa.jpg" alt="imagem de despesa fazendo pagamento por cartão de credito">
+                        <% }else if(dados.centrosCustos[x]["centros_custo.tipo.idTipo"]==2) {%>
+                            <img class="img__card" src="../img/receita.jpg" alt="imagem de receita mão abanando dinheiro">
+                        <% } %>
+                        <div class="card-body ">
+                            <h4 class="card-tittle section-cards__titlle" id="tittleCard">
+                               <%= dados.centrosCustos[x]["centros_custo.tipo.nomeTipo"] %>
+                            </h4>
+                            <p class="card-text section-cards__text">
+                                <div class="section-cards__cCusto"><h5><%= dados.centrosCustos[x]["centros_custo.nomeCentroCusto"] %></h5></div>
+                                <div class="section-cards__valor"><h5><%= parseFloatt(dados.centrosCustos[x]["SomaValor"]) %></h5></div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
         </section>
+        
+        
     </div>
 </main>
 <%- include('./partials/footer.ejs')%>
