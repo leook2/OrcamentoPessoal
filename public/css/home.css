@@ -35,7 +35,7 @@
 
 .section-intro{
     position: relative;
-    top: -100px;
+    top: 2rem;
 }
 .section-intro-img{
     width: 500px;
@@ -53,7 +53,7 @@
 }
 .section-intro-h2{
     font-family: var(--font-titulo);
-    font-size: 80px;
+    font-size: 2rem;
 }
 .section-intro-p{
     font-family: var(--font-text);
@@ -156,7 +156,7 @@
 
 
 .teste{
-    margin-top: 20em;
+    margin-top: 26em;
 }
 
 .section-explicativa{
@@ -194,7 +194,7 @@
         flex-wrap: wrap;
     }
     .section-cards-global{
-        height: 38em;
+        height: 40em;
     }
 }
 @media screen and (max-width: 994px){
@@ -202,7 +202,7 @@
         flex-direction: column;
     }
     .section-cards-global{
-        height: 46em;
+        height: 50em;
     }
     .section-intro-cont::after{
     height: 15em;
@@ -220,7 +220,7 @@
         flex-direction: column;
     }
     .section-cards-global{
-        height: 46em;
+        height: 53em;
     }
     .section-intro-img{
         width: 400px;
