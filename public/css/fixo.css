@@ -76,7 +76,10 @@ header{
 }
 .cabecalho-principal-nav-itens-a:hover{
     color: #fff;
+    padding: 27px;
+    font-size: 17px;
 }
+
 .cabecalho-principal-nav-itens-a.home{
     border: 1px rgba(233, 227, 227, 0.377) solid;
     border-radius: 20px;
@@ -94,6 +97,12 @@ header{
     border: none;
     color: white;
     font-size: var(--normal-size);
+    transition: .2s;
+    transition: all 0.5s ease;
+}
+.cabecalho-principal-nav-sign-in:hover{
+padding: 32px;
+font-size: 19px;
 }
 .last::after{
     content: '';
@@ -111,7 +120,12 @@ header{
     border: none;
     color: white;
     font-size: var(--normal-size);
+    transition: all 0.5s ease;
 }
+.cabecalho-principal-nav-sign-up:hover{
+    font-size: 18px;
+    background-color: rgba(140, 99, 207, 0.656);
+    }
 .cabecalho-principal-nav-btn{
     margin-right: var(--mb-1-25);
     padding: 50px;
