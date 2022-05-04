@@ -11,20 +11,24 @@
     --cor2: rgba(78, 207, 106, 0.548);
     --cor3: rgba(140, 99, 207, 0.656);
 }
-body{
+
+body {
     overflow: hidden;
 }
 
-#voltar{
+#inicio {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: white;
+    color: black;
     display: flex;
     position: relative;
     font-size: 20px;
     top: 80px;
     justify-content: center;
 }
+#inicio a{
+    text-decoration: underline;
+}
+
 
 main {
     width: 100vw;
@@ -44,11 +48,11 @@ main {
     font-weight: bold;
 }
 
-
-
 .login img {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+    height: 100%;
+
 }
 
 .row {
@@ -83,4 +87,20 @@ main {
 
 .btn1:hover {
     background-color: black;
+}
+
+@media(max-width:1325px){
+   .imagem{
+       display: none;
+   }
+   #divF{
+      margin:auto;
+   }
+}
+
+@media(max-width:992px){
+    #divF{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
 }

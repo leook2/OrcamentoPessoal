@@ -6,7 +6,7 @@ const session = require('express-session')
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = function (app) {
-    app.post('/add', (req, res) => {
+    app.post('/cadastro', (req, res) => {
         var erros = []
         if (!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null) {
             erros.push({ texto: "Nome invalido" })
@@ -31,18 +31,13 @@ module.exports = function (app) {
         }
     })
 
-    app.get('/add', (req, res) => {
-        res.render('add')
-    })
-
     app.post('/login', (req, res) => {
         const usuario = req.body.email;
         const senha = auth.criptogragarSenha(req.body.senha);
-        Usuarios.findOne({where:{ email: usuario }})
+        Usuarios.findOne({ where: { email: usuario } })
             .then(resp => {
-                console.log(resp)
                 if (senha == resp.hashSenha && usuario == resp.email) {
-                    req.session.idUsuario=resp.idUsuario;
+                    req.session.idUsuario = resp.idUsuario;
                     req.session.usuario = resp.email;
                     res.json(resp)
                 } else {
@@ -51,22 +46,20 @@ module.exports = function (app) {
             })
     })
 
-    app.get('/bemvindo', (req, res)=>{
-        if(req.session.usuario){
+    app.get('/bemvindo', (req, res) => {
+        if (req.session.usuario) {
             res.render('bemvindo')
-        }else{
+        } else {
             res.send('usuario negado')
         }
     })
 
-    app.get("/logout", (req, res)=>{
-        req.session.usuario=undefined;
-        req.session.idUsuario=undefined;
+    app.get("/logout", (req, res) => {
+        req.session.usuario = undefined;
+        req.session.idUsuario = undefined;
         res.redirect("/home")
     })
 
-
-    
     app.get('/login', (req, res) => {
         res.render('login')
     })
