@@ -107,13 +107,14 @@ header{
     background-color: rgba(228, 217, 217, 0.288);
     border-radius: 20px;
     padding: var(--mb-0-75);
-    width: 6em;
+    width: 8em;
     border: none;
     color: white;
     font-size: var(--normal-size);
 }
 .cabecalho-principal-nav-btn{
     margin-right: var(--mb-1-25);
+    padding: 50px;
 }
 .cabecalho-principal-h1{
     margin-left: var(--mb-1-25);
