@@ -140,7 +140,6 @@ function autUsuario() {
   axios.post('http://localhost:8182/login', usuario)
     .then(res => {
       if (res.status == 200) {
-        res
         window.location.href='/bemvindo'
       } else {
         console.log(res.status)
@@ -152,12 +151,13 @@ function autUsuario() {
 }
 
 function postCadastro() {
-  var form = document.getElementById('form')
+  var form = document.getElementById('form2')
   var usuario = {nome:form.nome.value, email: form.email.value, senha: form.senha.value, senha2:form.senha2.value }
   axios.post('http://localhost:8182/cadastro', usuario)
     .then(res => {
       if (res.status == 200) {
         alert('Cadastro efetuado com sucesso!')
+        window.location.href='/login'
       } else {
         console.log(res.status)
       }

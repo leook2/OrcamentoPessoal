@@ -17,16 +17,19 @@ body {
     overflow: hidden;
 }
 
-#voltar {
+#inicio {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: white;
+    color: black;
     display: flex;
     position: relative;
     font-size: 20px;
     top: 80px;
     justify-content: center;
 }
+#inicio a{
+    text-decoration: underline;
+}
+
 
 main {
     width: 100vw;
@@ -37,8 +40,6 @@ main {
     align-items: center;
 }
 
-
-
 .login {
     position: relative;
 }
@@ -48,11 +49,10 @@ main {
     font-weight: bold;
 }
 
-
-
 .login img {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+    height: 100%;
 
 }
 
@@ -94,7 +94,14 @@ main {
    .imagem{
        display: none;
    }
-   #form{
-      margin: auto;
+   #divF{
+      margin:auto;
    }
+}
+
+@media(max-width:992px){
+    #divF{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
 }
