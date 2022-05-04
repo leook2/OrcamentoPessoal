@@ -315,7 +315,7 @@ font-size: 19px;
 
 .tbscroll {
     background-color: #eaf3eb;         
-    height: 250px;
+    height: 350px;
     border: 1px solid black;
     overflow: scroll;
   }
