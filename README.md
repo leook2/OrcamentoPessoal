@@ -48,7 +48,7 @@ Tudo isso pensando no nosso publico alvo, não tentamos fazer nada que pareça m
 ![Tela de login](https://user-images.githubusercontent.com/95101382/167041707-a5b0903b-5d9b-4ed5-92bf-a447b27bb763.png)
 
 
-## SEMANTICA E PADRÕES DE ACESSIBILIDADE:
+## RESPONSIVIDADE E PADRÕES DE ACESSIBILIDADE:
 
 Como ja deu a entender pelo titulo, o nosso time teve total conhecimento de que nem todo mundo tem a mesma forma de se comunicar com a maquina como por exemplos as pessoas que necessitão de alguma ferramenta de auxilio para navegação, de acessar um determinado elemento, ou até mesmo a forma como algumas pessoas enxergam determinadas cores no monitor e etc...
 Com isso a gente tentou da melhor forma possivel melhorar a experiência TAMBEM a essas pessoas.
@@ -109,7 +109,7 @@ Com isso a gente tentou da melhor forma possivel melhorar a experiência TAMBEM 
 
 Como visto, nós usamos e abusamos de tags semanticas como Header, section, nav e assim por diante, nosso foco proposto ao projeto não foi e nunca seria apenas à um conhecimento tecnico mas tambem humanitario, visando levar o nosso projeto a novos horizontes, e como ja dizia a W3C "A web é para todos" e nós concrodamos muito com essa ideia
 
-#### A semantica:
+#### A responsividade:
 
 Em outro lado a gente tambem e é claro sabe que nem todo mundo acessa um site em um mesmo monitor de um determinado tamanho, trazemos por meio do framework chamado bootstrap, a tão adorada responsividade ao nosso projeto...
 
