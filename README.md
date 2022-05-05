@@ -1,3 +1,11 @@
+# GitHub dos colaboradores:
+ * docente: [Leonardo Ignacio](https://github.com/leonardoignacio)
+ 
+ * Aluno: [Arthur Costa](https://github.com/ArthurCost4)
+ * Aluno: [Matheus Vinicius](https://github.com/AnaniasMv)
+ * Aluno: [Leonardo Küchschlüger](https://github.com/leook2)
+
+
 # Projeto Integrador: FinanceON
 ## SENAC turma Programador Web 2021/22
 
@@ -152,14 +160,14 @@ E é claro temos a tela de saida dos nossos dados, onde é mostrado todo o calcu
 
 ![Pagina de relatorio](https://user-images.githubusercontent.com/95101382/167043909-ace28732-2f42-40fb-bddd-2ca9043afab4.png)
 
-#AGRADECIMENTOS
+# AGRADECIMENTOS
 
 Por todo apoio
 ## Principalmente ao nosso professor e grande amigo: Leonardo Ignácio Fernandes
 ### A nossa equipe que foi uma grande experiencia
 ### E acima de tudo ao SENAC que propos uma experiencia unica e de grande qualidade ao nosso curso
 
-##Observações:
+## Observações:
 
 Por Arthur/Matheus/Leonardo(aluno)
 
