@@ -8,6 +8,10 @@
     <title>Relatório</title>
 </head>
 <body>
+    <picture class="relatorio-img__logo">
+        <source media="(max-width:530px )" srcset="../img/LogotipoMobile.png">
+        <img src="../img/Logotipo.png" alt="Logotipo">
+    </picture>
 
     <header>
         <div class="btn__responsive-relatorio" id="headerRelatorio"></div>
@@ -35,7 +39,17 @@
     <div class="tabela-relatorio__section">
         <section class="relatorio-saida container">
             <div class="row">
-                <div class="col-md-3 cardd">
+                <div class="col-12 cardd">
+                    <div class="relatorio-saida-card relatorio__total">
+                        <div class="relatorio-saida-total-resultado">
+                            <div class="saida saida__total" >
+                                <h3><%= parseFloatt(dados.tipos[0].SomaValor, dados.tipos[1].SomaValor, dados.tipos[2].SomaValor)%></h3>
+                            </div>
+                        </div>
+                        <h2 class="relatorio-h2 relatorio-h2__total">Saldo restante</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 cardd">
                     <div class="relatorio-saida-card relatorio__receita">
                         <div class="relatorio-saida-receita-resultado">
                             <div class="saida saida__receita"><% include('../public/js/transacoes.ejs') %>
@@ -46,7 +60,7 @@
                         <h2 class="relatorio-h2 relatorio-h2__receita"><%= dados.tipos[0]["centros_custo.tipo.nomeTipo"] %></h2>
                     </div>
                 </div>
-                <div class="col-md-3 cardd">
+                <div class="col-md-4 cardd">
                     <div class="relatorio-saida-card relatorio__despesa">
                         <div class="relatorio-saida-despesa-resultado">
                             <div class="saida saida__despesa">
@@ -57,7 +71,7 @@
                         <h2 class="relatorio-h2 relatorio-h2__despesa"><%= dados.tipos[2]["centros_custo.tipo.nomeTipo"] %></h2>
                     </div>
                 </div>
-                <div class="col-md-3 cardd">
+                <div class="col-md-4 cardd">
                     <div class="relatorio-saida-card relatorio__investimento">
                         <div class="relatorio-saida-investimento-resultado">
                             <div class="saida saida__investimento">
@@ -66,16 +80,6 @@
                         </div>
                 
                         <h2 class="relatorio-h2 relatorio-h2__investimento"><%= dados.tipos[1]["centros_custo.tipo.nomeTipo"] %></h2>
-                    </div>
-                </div>
-                <div class="col-md-3 cardd">
-                    <div class="relatorio-saida-card relatorio__total">
-                        <div class="relatorio-saida-total-resultado">
-                            <div class="saida saida__total" >
-                                <h3><%= parseFloatt(dados.tipos[0].SomaValor, dados.tipos[1].SomaValor, dados.tipos[2].SomaValor)%></h3>
-                            </div>
-                        </div>
-                        <h2 class="relatorio-h2 relatorio-h2__total">Total</h2>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,10 @@
 
+
+.relatorio-img__logo{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(36, 130, 57);
+}
 .cabecalho-principal-nav-relatorio{
     width: 20rem;
     position: absolute;
@@ -90,7 +96,13 @@
     color: rgb(202, 10, 10);
 }
 .saida__investimento{
-    color: rgb(22, 22, 204);
+    color: rgb(253, 136, 39);
+}
+.saida__total{
+    color: rgb(42, 42, 245);
+}
+.relatorio__total{
+    text-align: center;
 }
 .btn__table{
     border-radius: 10px;
